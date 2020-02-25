@@ -1,4 +1,4 @@
-# Team17: Monopoly
+# Team 17: Monopoly
 This is the repository of our Monopoly game for CPSC 233, Winter 2020.</br>
 This game is **based** on the **Original Monopoly** game and it will be a board game. This game will be written in the **Java** language as part of our CPSC 233 project. this project will be written by four students from the University of Calgary who begin to learn this language.</br>
 
