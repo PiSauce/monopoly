@@ -5,10 +5,13 @@ This game is **based** on the **Original Monopoly** game and it will be a board 
 ## System Requirments
 To be able to play this game a **Java JDK 8 System** is required. <a href  = "https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html"> Click Here </a> to download a the Java System. </br>
 
-## Run:
-> Mac: java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore Library  </br>
-> Windows:  java -cp .;junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore Library  </br>
-  
+## Installation:
+1) Go to the Code Repository <a href = "https://github.com/PiSauce/monopoly"> under the master branch </a> </br>
+2) Download the files under the main branch as a ZIP file</br>
+3) Extract files and check you have everything on the GitHub file</br>
+4) Open computer's terminal</br>
+5) Compile: javac TextBased.java</br>
+6) Run: java TextBased
 
 ## Version
 **v1.0** </br>
