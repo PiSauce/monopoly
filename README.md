@@ -10,8 +10,8 @@ To be able to play this game a **Java JDK 8 System** is required. <a href  = "ht
 2) Download the files under the main branch as a ZIP file</br>
 3) Extract files and check you have everything shown on the GitHub file</br>
 4) Open computer's terminal</br>
-5) Compile: javac **TextBased.java**</br>
-6) Run: java **TextBased**
+5) Compile: javac **Game.java**</br>
+6) Run: java **Game**
 
 ## Version
 **v1.0** </br>
