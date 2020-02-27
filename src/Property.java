@@ -1,4 +1,3 @@
-
 public class Property {
 	
 	//Instance Variables
@@ -11,15 +10,20 @@ public class Property {
 	private int penalty; // rent to pay
 	private int owner;
 
-
+	public Property(String name, int action, int price) {
+		this.name= "";
+		this.action = 0;
+		this.price = 100;
+	}
+	
 	//Price
 	public int getPrice() {
 		return price;
 	}
 	
-	public void setPrice() {
-		this.price = 100;
-	}
+//	public void setPrice() {
+//		this.price = 100;
+//	}
 	/**
 	set default price of any property to 100
 	**/
@@ -43,5 +47,8 @@ public class Property {
 		return owner;
 	}
 	
+	public void setOwner(int owner){
+		this.owner = owner;
+	}	
 	public void doAction() {}
 }
