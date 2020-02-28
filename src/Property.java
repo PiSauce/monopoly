@@ -10,7 +10,8 @@ public class Property {
 	private int price; // cost of property
 	private int penalty; // rent to pay
 	private int owner;
-
+	
+	
 
 	//Price
 	public int getPrice() {
@@ -43,5 +44,9 @@ public class Property {
 		return owner;
 	}
 	
-	public void doAction() {}
+	public int setOwner(int player) {
+		this.owner = player;
+	}
+	
+	public void getAction() {}
 }

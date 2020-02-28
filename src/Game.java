@@ -24,8 +24,8 @@ public class Game {
 		int[] dice = player.roll(); // Get dice roll
 		player.setPosition(player.getPosition() + dice[0] + dice[1]); // Change player position
 		
-		Property prop = board.getProperty(player.getPosition());
-		board.getProperty(player.getPosition()).getAction());
+		Property prop = board.getProperty(player.getPosition();
+		board.getProperty(player.getPosition()).getAction();
 	}
 	
 	private void chanceCard(int action, Player currentPlayer) {
@@ -62,8 +62,7 @@ public class Game {
 		case 8:
 			currentPlayer.setPosition(40);
 			break;
-		case 9:);
-			currentPlayer.getProperty();
+		case 9:;
 			currentPlayer.changeMoney();
 			break;
 		case 10:
@@ -84,13 +83,11 @@ public class Game {
 				currentPlayer.changeMoney(-50);
 			}
 			break;
-		case 14:);
+		case 14:
 			currentPlayer.changeMoney(150);
-			theBank.changeMoney(-150);
 			break;
 		case 15:
 			currentPlayer.changeMoney(100);
-			theBank.changeMoney(-100);
 			break;
 		default:
 			break;
