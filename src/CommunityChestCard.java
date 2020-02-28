@@ -5,7 +5,7 @@ public class CommunityChestCard extends Card {
 	private String description;
 	private int label;
 	
-	public void action(Player currentPlayer, ArrayList<Player> playerList, Bank theBank, int i) {
+	public void action(Player currentPlayer, ArrayList<Player> playerList int i) {
 		
 		switch(i) {
 			case 0:
@@ -55,7 +55,7 @@ public class CommunityChestCard extends Card {
 				theBank.changeMoney(-20);
 				break;
 			case 9:
-				setDescription("Life insurance matures ¨C Collect $100");
+				setDescription("Life insurance matures ï¿½C Collect $100");
 				currentPlayer.changeMoney(100);
 				theBank.changeMoney(-100);
 				break;

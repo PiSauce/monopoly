@@ -4,9 +4,10 @@ public class Board {
 	ArrayList<Property> propertyList = new ArrayList<Property>();
 	Deck chanceDeck;
 	Deck chestDeck;
+	int action;
 	
 	public void initProperties() {
-		// Add properties to propertyList in order
+		// Add properties to propertyList in order 
 	}
 	
 	public void initChanceDeck() {
@@ -39,5 +40,9 @@ public class Board {
 	
 	public Card drawChest() {
 		return chestDeck.draw();
+	}
+	
+	public int getAction() {
+		return action;
 	}
 }

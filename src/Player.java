@@ -6,7 +6,14 @@ public class Player {
 	private int piece;
 	private int position;
 	private ArrayList<Integer> properties = new ArrayList<Integer>();
-	private ArrayList<Integer> cards = new ArrayList<Integer>();
+	private ArrayList<Card> cards = new ArrayList<Card>();
+	
+	public Player(int turnNum, int piece) {
+		this.turnNum = turnNum;
+		this.piece = piece;
+		this.money = 2000; // Default number
+		this.position = 0; // Starting position
+	}
 	
 	public int getMoney() {
 		return money;
@@ -16,8 +23,13 @@ public class Player {
 		this.money = m;
 	}
 	
-	public int roll() {
-		return (int)Math.round(Math.random()*6);
+	public void changeMoney(int m) {
+		this.money += m;
+	}
+	
+	public int[] roll() {
+		int[] dice = {(int)Math.round(Math.random()*6), (int)Math.round(Math.random()*6)};
+		return dice;
 	}
 	
 	public int getPosition() {
@@ -36,11 +48,15 @@ public class Player {
 		properties.remove(prop);
 	}
 	
+	public void addCard(Card card) {
+		cards.add(card);
+	}
+	
 	public void setPiece(int p) {
 		this.piece = p;
 	}
 	
-	public void setTurnNum(int n) {
-		this.turnNum = n;
+	public int getTurnNum(int n) {
+		return turnNum;
 	}
 }
