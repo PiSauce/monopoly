@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+// the board class one of the main components of the monopoly board game
 
 // board class, this is the main class which deals with all the sub classes such as deck, cards, etc
 //chance and chest are the child classes of the deck class
 
 public class Board {
 	ArrayList<Property> propertyList = new ArrayList<Property>();
+	// initializing the two types of cards in the game
 	Deck chanceDeck;
 	Deck chestDeck;
 	int action;
@@ -40,12 +42,12 @@ public class Board {
 	public void setOwner(int pos, int turn) {
 		propertyList.get(pos).setOwner(turn);
 	}
-	// draws a card from the chance deck
+	// draws a chance card and returns the card drawn by the player
 	public Card drawChance() {
 		return chanceDeck.draw();
 	}
 	
-	//draw chest is invoked when a player lands on a chest on the board and is made to draw a card
+	// draws a card from the community chest and returns the card drawn
 	public Card drawChest() {
 		return chestDeck.draw();
 	}
