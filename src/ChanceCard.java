@@ -18,11 +18,9 @@ public class ChanceCard extends Card {
 				break;
 			case 1:
 				setDescription("Advance to Illinois Avenue");
-				// need to check theBoard
 				break;
 			case 2:
 				setDescription("Advance to St. Charles Place");
-				// need to check theBoard
 				break;
 			case 3:
 				setDescription("Advance token to nearest utility. If unowned, you may buy it from the bank; If owned, throw the dice and pay owner a total of 10 times the amount thrown.");
@@ -62,6 +60,54 @@ public class ChanceCard extends Card {
 				break;
 			case 15:
 				setDescription("You have won a crossword competition. Collect $100.");
+				break;
+			case 16:
+				setDescription("Advance to Go, Collect $200");
+				break;
+			case 17:
+				setDescription("Bank error in your favor. Collect $200.");
+				break;
+			case 18:
+				setDescription("Doctor's fees. Pay $50.");
+				break;
+			case 19:
+				setDescription("From sale of stock you get $50.");
+				break;
+			case 20:
+				setDescription("Get out of Jail Free");
+				break;
+			case 21:
+				setDescription("Go to Jail. Go directly to Jail. Do not pass GO, do not collect $200.");
+				break;
+			case 22:
+				setDescription("Grand Opera Night. Collect $50 from every player for opening night seats.");
+				break;
+			case 23:
+				setDescription("Holiday Fund matures. Receive $100.");
+				break;
+			case 24:
+				setDescription("Income tax refund. Collect $20.");
+				break;
+			case 25:
+				setDescription("Life insurance matures �ｿｽC Collect $100");
+				break;
+			case 26:
+				setDescription("Hospital Fees. Pay $50.");
+				break;
+			case 27:
+				setDescription("School fees. Pay $50.");
+				break;
+			case 28:
+				setDescription("Receive $25 consultancy fee.");
+				break;
+			case 29:
+				setDescription("You are assessed for street repairs: Pay $40 per house and $115 per hotel you own.");
+				break;
+			case 30:
+				setDescription("You have won second prize in a beauty contest. Collect $10.");
+				break;
+			case 31:
+				setDescription("You inherit $100.");
 				break;
 			default:
 				break;
