@@ -15,7 +15,7 @@ public class Card {
 		setup();
 	}
 	
-	// Sets a description for the card
+	// Sets a description for the card.
 	// 0 - 15 	-> Chance card IDs
 	// 16 - 31 	-> Community chest card IDs
 	private void setup() {
