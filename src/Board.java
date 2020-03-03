@@ -18,8 +18,8 @@ public class Board {
 	// creating and initializing the chance deck of cards
 	public void initChanceDeck() {
 		chanceDeck = new Deck();
-		for(int i = 0; i < 15/*The size of the deck we want*/; i++) {
-			chanceDeck.addCard(new ChanceCard(i));
+		for(int i = 0; i < 16; i++) {
+			chanceDeck.addCard(new Card(i));
 		}
 		chanceDeck.shuffle();
 	}
@@ -27,8 +27,8 @@ public class Board {
 	// creating and initializing the community chest cards
 	public void initChestDeck() {
 		chestDeck = new Deck();
-		for(int i = 0; i < 15/*The size of the deck we want*/; i++) {
-			chestDeck.addCard(new ChanceCard(i));
+		for(int i = 0; i < 16; i++) {
+			chestDeck.addCard(new Card(i + 16));
 		}
 		chestDeck.shuffle();
 	}
