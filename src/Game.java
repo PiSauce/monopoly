@@ -5,7 +5,9 @@ public class Game {
 	private Board board;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	
-	private void Main(String[] args) {
+	public Game() {
+		setup(1);
+		
 		while(true) {
 			turn(board);
 		}
@@ -20,15 +22,23 @@ public class Game {
 	}
 	
 	private void turn(Board board) {
-		Player player = playerList.get(turnNo); // Get current player
-		int[] dice = player.roll(); // Get dice roll
-		player.setPosition(player.getPosition() + dice[0] + dice[1]); // Change player position
+		// Get current player
+		Player player = playerList.get(turnNo);
+		boolean doubles = false;
 		
-		Property prop = board.getProperty(player.getPosition();
-		board.getProperty(player.getPosition()).getAction();
+		do {
+		// Roll dice
+		int[] dice = player.roll();
+		doubles = dice[0] == dice[1];
+		
+		// Move player
+		
+		// Make any transactions
+		} while(doubles);
+		// Increment turn
 	}
 	
-	private void chanceCard(int action, Player currentPlayer) {
+	private void cardAction(int action, Player currentPlayer) {
 		switch(action) {
 		case 0:
 			currentPlayer.setPosition(0);
@@ -36,18 +46,14 @@ public class Game {
 			break;
 		case 1:
 			currentPlayer.setPosition(24);
-			// need to check theBoard
 			break;
 		case 2:
 			currentPlayer.setPosition(11);
-			// need to check theBoard
 			break;
 		case 3:
-			// need to check theBoard
 			break;
 		case 4:
-			// need to check theBoard
-			currentPlayer.changeMoney();
+			currentPlayer.changeMoney(0);
 			break;
 		case 5:
 			currentPlayer.changeMoney(50);
@@ -57,25 +63,22 @@ public class Game {
 			break;
 		case 7:
 			currentPlayer.setPosition(currentPlayer.getPosition()-3);
-			// need to check theBoard
 			break;
 		case 8:
 			currentPlayer.setPosition(40);
 			break;
 		case 9:;
-			currentPlayer.changeMoney();
+			currentPlayer.changeMoney(0);
 			break;
 		case 10:
 			currentPlayer.changeMoney(-15);
 			break;
 		case 11:
 			currentPlayer.setPosition(5);
-			// need to check theBoard
 			currentPlayer.changeMoney(200);
 			break;
 		case 12:;
 			currentPlayer.setPosition(39);
-			// need to check theBoard
 			break;
 		case 13:
 			for (Player p: playerList) {
