@@ -1,31 +1,69 @@
 public class Property {
-	
-	//Instance Variables
+
+	// Instance Variables
 	private String name; // properties names
 	private int position; // location on board
-	private int houses;	
+	private int houses;
 	private int hotels;
 	private int action;
 	private int price; // cost of property
 	private int penalty; // rent to pay
 	private int owner;
+
 	public Property(String name, int action, int price) {
-		this.name= "";
-		this.action = 0;
+		this.setName("");
+		this.setAction(0);
 		this.price = 100;
 	}
-	//Price
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+	public int getAction() {
+		return action;
+	}
+
+	public void setAction(int action) {
+		this.action = action;
+	}
+
+	public int getHotels() {
+		return hotels;
+	}
+
+	public void setHotels(int hotels) {
+		this.hotels = hotels;
+	}
+
+	public int getHouses() {
+		return houses;
+	}
+
+	public void setHouses(int houses) {
+		this.houses = houses;
+	}
+
+	// Price
 	public int getPrice() {
 		return price;
 	}
 	
-//	public void setPrice() {
-//		this.price = 100;
-//	}
-	/**
-	set default price of any property to 100
-	**/
-	
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	
 	//Penalty
 	public int getPenalty() {
