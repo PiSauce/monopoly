@@ -44,7 +44,7 @@ public class Property {
 		return owner;
 	}
 	
-	public int setOwner(int player) {
+	public void setOwner(int player) {
 		this.owner = player;
 	}
 	
