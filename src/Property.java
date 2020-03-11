@@ -1,7 +1,6 @@
-public class Property {
+public class Property extends Tile{
 
 	// Instance Variables
-	private String name; // properties names
 	private int position; // location on board
 	private int houses;
 	private int hotels;
@@ -11,7 +10,7 @@ public class Property {
 	private int owner;
 
 	public Property(String name, int action, int price) {
-		this.setName("");
+		super(name);
 		this.setAction(0);
 		this.price = 100;
 	}
