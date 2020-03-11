@@ -9,10 +9,9 @@ To be able to play this game a **Java JDK 8 System** is required. <a href  = "ht
 1) Go to the Code Repository <a href = "https://github.com/PiSauce/monopoly"> under the master branch </a> </br>
 2) Download the files under the main branch as a ZIP file</br>
 3) Extract files and check you have everything shown on the GitHub file</br>
-4) Make sure zip file is placed on Downloads </br>
-5) Open computer's terminal</br>
-6) Compile: javac **Game.java**</br>
-7) Run: java **Game**
+4) Open computer's terminal</br>
+5) Compile: javac **Game.java**</br>
+6) Run: java **Game**
 
 ## Version
 **v1.0** </br>
