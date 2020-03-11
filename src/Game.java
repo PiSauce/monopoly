@@ -5,23 +5,19 @@ public class Game {
 	private Board board;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	
-	public Game() {
-		setup(1);
-		
-		while(true) {
-			turn(board);
-		}
-	}
-	
-	private void setup(int playerCount) {
+	public void newGame(int playerCount) {
 		board = new Board();
 		playerList.clear();
 		for(int i = 0; i < playerCount; i++) {
 			playerList.add(new Player(i, 0));
 		}
+
+		while(true){
+			turn(board);
+		}
 	}
 	
-	private void turn(Board board) {
+	public void turn(Board board) {
 		// Get current player
 		Player player = playerList.get(turnNo);
 		boolean doubles = false;
@@ -33,11 +29,14 @@ public class Game {
 		
 		// Move player
 		player.move(dice[0] + dice[1]);
+		System.out.println("Player " + turnNo + "\'s position: " + player.getPosition());
 		
 		// Make any transactions
 		board.getProperty(player.getPosition()).getAction();
 		} while(doubles);
+		
 		// Increment turn
+		turnNo++;
 	}
 	
 	private void cardAction(int action, Player currentPlayer) {
