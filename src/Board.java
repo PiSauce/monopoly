@@ -12,9 +12,92 @@ public class Board {
 	int action;
 	
 	public void initTiles() {
-		tileList.add(new Tile("Start"));
+		
+		//brown properties
+		tileList.add(new Tile("Mediterranean"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Baltic Avenue"));
+		tileList.add(new Property());
+		
+		
+		
+		//light blue properties
+		tileList.add(new Tile("Oriental Avenue"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Vermont Avenue"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Connecticut"));
+		tileList.add(new Property());
+		
+		
+		//magenta properties
+		tileList.add(new Tile("St. Charles Place"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Static Avenue"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Virginia Avenue"));
+		tileList.add(new Property());
+		
+		
+		
+		//orange properties
+		tileList.add(new Tile("St. James Place"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Tennessee Avenue"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("New York Avenue"));
+		tileList.add(new Property());
+		
+		
+		//red properties
+		tileList.add(new Tile("Kentucky Avenue"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Indiana Avenue"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Illinois Avenue"));
+		tileList.add(new Property());
+		
+		
+		//yellow properties
+		tileList.add(new Tile("Atlantic"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Ventnor"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Marvin Gardins"));
+		tileList.add(new Property());
+		
+		
+		
+		//green properties
+		tileList.add(new Tile("Pacific Avenue"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("North Carolina"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Pennsylvania"));
+		tileList.add(new Property());
+		
+		
+		//dark blue properties
+		tileList.add(new Tile("Park Place"));
+		tileList.add(new Property());
+		
+		tileList.add(new Tile("Boardwalk"));
 		tileList.add(new Property());
 	}
+	
 	
 	// creating and initializing the chance deck of cards
 	public void initChanceDeck() {
