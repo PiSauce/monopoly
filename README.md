@@ -6,16 +6,30 @@ This game is **based** on the **Original Monopoly** game and it will be a board 
 To be able to play this game a **Java JDK 8 System** is required. <a href  = "https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html"> Click Here </a> to download the Java System needed for the game. </br>
 
 ## Installation:
-1) Go to the Code Repository <a href = "https://github.com/PiSauce/monopoly"> under the master branch </a> </br>
-2) Download the files under the main branch as a ZIP file</br>
+1) Go to the Code Repository under the <a href = "https://github.com/PiSauce/monopoly"> master branch </a> </br>
+2) Download files from master branch as a ZIP file under **downloads** file</br>
 3) Extract files and check you have everything shown on the GitHub file</br>
-4) Open computer's terminal</br>
-5) Compile: javac **Game.java**</br>
-6) Run: java **Game**
+4) Open computer's terminal or eclipse</br>
+
+### Terminal
+5) open terminal and locate the file </br>
+6) Compile: javac **Game.java**</br>
+7) Run: java **Game** </br>
+
+### Eclipse
+5) open eclipse and import the github file </br>
+6) click **Game.java** setting and go **Run As**
+6) press **Run Application**
+
+
 
 ## Version
 **v1.0** </br>
 - Text Based Version of the Monopoly game</br>
+</br>
+
+**v2.0** </br>
+- GUI Implementation </br>
 </br>
 
 ## Made By:
