@@ -1,8 +1,10 @@
 public class Card {
 	
+	//instance variables
 	private String description;
 	private int label;
 	private int ID;
+	
 	
 	// Constructors
 	public Card() {
@@ -10,6 +12,7 @@ public class Card {
 		setup();
 	}
 	
+	//copy constructor
 	public Card(int ID) {
 		this.ID = ID;
 		setup();
@@ -18,6 +21,7 @@ public class Card {
 	// Sets a description for the card.
 	// 0 - 15 	-> Chance card IDs
 	// 16 - 31 	-> Community chest card IDs
+	// each ID represents an outcome from picking up a card
 	private void setup() {
 		switch(ID) {
 			case 0:
