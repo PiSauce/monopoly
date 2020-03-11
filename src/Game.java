@@ -32,8 +32,10 @@ public class Game {
 		doubles = dice[0] == dice[1];
 		
 		// Move player
+		player.move(dice[0] + dice[1]);
 		
 		// Make any transactions
+		board.getProperty(player.getPosition()).getAction();
 		} while(doubles);
 		// Increment turn
 	}
