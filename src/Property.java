@@ -9,13 +9,11 @@ public class Property {
 	private int price; // cost of property
 	private int penalty; // rent to pay
 	private int owner;
-
 	public Property(String name, int action, int price) {
 		this.name= "";
 		this.action = 0;
 		this.price = 100;
 	}
-	
 	//Price
 	public int getPrice() {
 		return price;
