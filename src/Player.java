@@ -63,4 +63,8 @@ public class Player {
 	public int getTurnNum(int n) {
 		return turnNum;
 	}
+
+	public int getPiece(){
+		return piece;
+	}
 }
