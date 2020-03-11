@@ -5,14 +5,15 @@ import java.util.ArrayList;
 //chance and chest are the child classes of the deck class
 
 public class Board {
-	ArrayList<Property> propertyList = new ArrayList<Property>();
+	ArrayList<Tile> tileList = new ArrayList<Tile>();
 	// initializing the two types of cards in the game
 	Deck chanceDeck;
 	Deck chestDeck;
 	int action;
 	
-	public void initProperties() {
-		// Add properties to propertyList in order 
+	public void initTiles() {
+		tileList.add(new Tile("Start"));
+		tileList.add(new Property());
 	}
 	
 	// creating and initializing the chance deck of cards

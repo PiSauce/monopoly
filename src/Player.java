@@ -36,6 +36,10 @@ public class Player {
 		return position;
 	}
 	
+	public void setPosition(int pos) {
+		this.position = pos;
+	}
+	
 	public void move(int pos) {
 		this.position += pos;
 	}
