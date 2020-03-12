@@ -5,6 +5,14 @@ public class Game {
 	private Board board;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private ArrayList<Integer> actionList = new ArrayList<Integer>();
+
+	/*
+
+	TODO: Add sell property action
+	TODO: Add mortgage action
+	TODO: Add chance and community chest actions
+
+	*/
 	
 	public void newGame(int playerCount) {
 		board = new Board();
@@ -33,21 +41,21 @@ public class Game {
 		doubles = dice[0] == dice[1];
 		counter += doubles ? 1:0;
 
+		System.out.println("Rolled a " + (dice[0] + dice[1]) + "! (" + dice[0] + " and " + dice[1] + ")");
+
 		if(counter == 3){ // If player has rolled a double 3 times
+			System.out.println("Rolled a double 3 times! Player " + player.getTurnNum() + " has been sent to jail!");
 			player.setPosition(0/* change this to Jail position */); // Set player position to jail
 			player.setJailed(true); // Change player actions to jailed actions
 			break; // End turn immediately
 		}
-
-		System.out.println("Rolled a " + (dice[0] + dice[1]) + "! (" + dice[0] + " and " + dice[1] + ")");
 		
 		// Move player
 		player.move(dice[0] + dice[1]);
 		Property curProp = board.getProperty(player.getPosition());
-
 		System.out.println("Currently at " + curProp.getName()+ ".");
 
-		if(curProp.getOwner() != player.getTurnNum()){ // If player does not own property
+		if((curProp).getOwner() != player.getTurnNum()) { // If player does not own property
 			doAction(3, player); // Give money to owner of property
 		}
 		
@@ -67,7 +75,7 @@ public class Game {
 		Property property = board.getProperty(player.getPosition());
 		switch(action){
 			case 0: // Buy property
-				if(property.getOwner() == -1 && player.getMoney() >= property.getPrice()) // If unowned and player has enough money
+				if(property.getOwner() == -1 && player.getMoney() >= property.getPrice()){ // If unowned and player has enough money
 					player.changeMoney(-property.getPrice()); // Remove money from player
 					property.setOwner(player.getTurnNum()); // Set property owner to current player
 				} else {
