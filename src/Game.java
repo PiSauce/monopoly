@@ -89,7 +89,7 @@ public class Game {
 			case 3: // Remove money
 				if(player.getTurnNum() != property.getOwner()) {
 					player.changeMoney(property.getPenalty());
-					playerList.get(property.getOwner()).changeMoney(p.getPenalty());
+					playerList.get(property.getOwner()).changeMoney(property.getPenalty());
 				}
 				break;
 		}
