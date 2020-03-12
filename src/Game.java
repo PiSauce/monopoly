@@ -32,11 +32,29 @@ public class Game {
 		System.out.println("Player " + turnNo + "\'s position: " + player.getPosition());
 		
 		// Make any transactions
-		board.getProperty(player.getPosition()).getAction();
+		board.getProperty(player.getPosition()).getAction());
 		} while(doubles);
 		
 		// Increment turn
 		turnNo++;
+	}
+
+	private void propertyAction(int action, Player currentPlayer) {
+		Property p = board.getProperty(currentPlayer.getPosition());
+		switch(action){
+			case 0: // Buy property
+				break;
+			case 1: // Sell property
+				break;
+			case 2: // Mortgage property
+				break;
+			case 3: // Remove money
+				if(currentPlayer.getTurnNum() != p.getOwner()) {
+					currentPlayer.changeMoney(p.getPenalty());
+					playerList.get(p.getOwner()).changeMoney(p.getPenalty());
+				}
+				break;
+		}
 	}
 	
 	private void cardAction(int action, Player currentPlayer) {
