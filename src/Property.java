@@ -19,16 +19,8 @@ public class Property extends Tile{
 		this.penalty = penalty;
 	}
 
-	public int getHotels() {
-		return hotels;
-	}
-
 	public void setHotels(int hotels) {
 		this.hotels = hotels;
-	}
-
-	public int getHouses() {
-		return houses;
 	}
 
 	public void setHouses(int houses) {
