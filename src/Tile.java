@@ -1,6 +1,7 @@
 public class Tile {
     // Instance variables
     private String name;
+    private int action;
 
     public Tile(String name){
         this.name = name;
@@ -12,5 +13,13 @@ public class Tile {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getAction() {
+        return action;
+    }
+
+    public void setAction(int action) {
+        this.action = action;
     }
 }
