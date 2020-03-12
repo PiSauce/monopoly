@@ -5,6 +5,7 @@ public class Player {
 	private int turnNum;
 	private int piece;
 	private int position;
+	private boolean jailed;
 	private ArrayList<Integer> properties = new ArrayList<Integer>();
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	
@@ -13,6 +14,7 @@ public class Player {
 		this.piece = piece;
 		this.money = 2000; // Default number
 		this.position = 0; // Starting position
+		this.jailed = false;
 	}
 	
 	public int getMoney() {
@@ -35,6 +37,10 @@ public class Player {
 	public int getPosition() {
 		return position;
 	}
+
+	public void setPosition(int pos) {
+		this.position = pos;
+	}
 	
 	public void move(int pos) {
 		this.position += pos;
@@ -56,7 +62,19 @@ public class Player {
 		this.piece = p;
 	}
 	
-	public int getTurnNum(int n) {
+	public int getTurnNum() {
 		return turnNum;
+	}
+
+	public int getPiece(){
+		return piece;
+	}
+
+	public boolean isJailed() {
+		return jailed;
+	}
+
+	public void setJailed(boolean jailed) {
+		this.jailed = jailed;
 	}
 }

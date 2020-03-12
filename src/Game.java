@@ -4,38 +4,95 @@ public class Game {
 	private int turnNo = 0;
 	private Board board;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
+	private ArrayList<Integer> actionList = new ArrayList<Integer>();
+
+	/*
+
+	TODO: Add sell property action
+	TODO: Add mortgage action
+	TODO: Add chance and community chest actions
+
+	*/
 	
-	public Game() {
-		setup(1);
-		
-		while(true) {
-			turn(board);
-		}
-	}
-	
-	private void setup(int playerCount) {
+	public void newGame(int playerCount) {
 		board = new Board();
 		playerList.clear();
 		for(int i = 0; i < playerCount; i++) {
 			playerList.add(new Player(i, 0));
 		}
+
+		while(true){
+			turn(board);
+		}
 	}
 	
-	private void turn(Board board) {
+	public void turn(Board board) {
+		int counter = 0;
+
 		// Get current player
 		Player player = playerList.get(turnNo);
 		boolean doubles = false;
+
+		System.out.println("It is player " + turnNo + "'s turn.");
 		
 		do {
 		// Roll dice
 		int[] dice = player.roll();
 		doubles = dice[0] == dice[1];
+		counter += doubles ? 1:0;
+
+		System.out.println("Rolled a " + (dice[0] + dice[1]) + "! (" + dice[0] + " and " + dice[1] + ")");
+
+		if(counter == 3){ // If player has rolled a double 3 times
+			System.out.println("Rolled a double 3 times! Player " + player.getTurnNum() + " has been sent to jail!");
+			player.setPosition(0/* change this to Jail position */); // Set player position to jail
+			player.setJailed(true); // Change player actions to jailed actions
+			break; // End turn immediately
+		}
 		
 		// Move player
+		player.move(dice[0] + dice[1]);
+		Property curProp = board.getProperty(player.getPosition());
+		System.out.println("Currently at " + curProp.getName()+ ".");
+
+		if((curProp).getOwner() != player.getTurnNum()) { // If player does not own property
+			doAction(3, player); // Give money to owner of property
+		}
 		
 		// Make any transactions
+		System.out.println("0: Buy property");
+		System.out.println("1: Sell property");
+		System.out.println("2: Mortgage property");
+		System.out.println("");
+		
 		} while(doubles);
+		
 		// Increment turn
+		turnNo++;
+	}
+
+	private void doAction(int action, Player player) {
+		Property property = board.getProperty(player.getPosition());
+		switch(action){
+			case 0: // Buy property
+				if(property.getOwner() == -1 && player.getMoney() >= property.getPrice()){ // If unowned and player has enough money
+					player.changeMoney(-property.getPrice()); // Remove money from player
+					property.setOwner(player.getTurnNum()); // Set property owner to current player
+				} else {
+					System.out.println("Property already has an owner!");
+				}
+				break;
+			case 1: // Sell property
+				break;
+			case 2: // Mortgage property
+				break;
+			case 3: // Remove money
+				if(player.getTurnNum() != property.getOwner()) {
+					player.changeMoney(property.getPenalty());
+					playerList.get(property.getOwner()).changeMoney(property.getPenalty());
+				}
+				break;
+		}
 	}
 	
 	private void cardAction(int action, Player currentPlayer) {
