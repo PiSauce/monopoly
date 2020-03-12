@@ -10,11 +10,13 @@ public class Property extends Tile{
 	public Property(){
 		super("blank");
 		this.price = 1;
+		this.penalty = 1;
 	}
 
-	public Property(String name, int price) {
+	public Property(String name, int price, int penalty) {
 		super(name);
 		this.price = price;
+		this.penalty = penalty;
 	}
 
 	public int getHotels() {
