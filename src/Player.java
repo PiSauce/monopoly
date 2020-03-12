@@ -60,7 +60,7 @@ public class Player {
 		this.piece = p;
 	}
 	
-	public int getTurnNum(int n) {
+	public int getTurnNum() {
 		return turnNum;
 	}
 
