@@ -5,7 +5,7 @@ public class Property extends Tile{
 	private int hotels;
 	private int price; // cost of property
 	private int penalty; // rent to pay
-	private int owner;
+	private int owner = -1;
 
 	public Property(){
 		super("blank");
@@ -57,5 +57,4 @@ public class Property extends Tile{
 	public void setOwner(int owner){
 		this.owner = owner;
 	}	
-	public void doAction() {}
 }
