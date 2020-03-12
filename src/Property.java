@@ -1,34 +1,20 @@
 public class Property extends Tile{
 
 	// Instance Variables
-	private int position; // location on board
 	private int houses;
 	private int hotels;
-	private int action;
 	private int price; // cost of property
 	private int penalty; // rent to pay
 	private int owner;
 
-	public Property(String name, int action, int price) {
+	public Property(){
+		super("blank");
+		this.price = 1;
+	}
+
+	public Property(String name, int price) {
 		super(name);
-		this.setAction(0);
-		this.price = 100;
-	}
-
-	public int getPosition() {
-		return position;
-	}
-
-	public void setPosition(int position) {
-		this.position = position;
-	}
-
-	public int getAction() {
-		return action;
-	}
-
-	public void setAction(int action) {
-		this.action = action;
+		this.price = price;
 	}
 
 	public int getHotels() {
