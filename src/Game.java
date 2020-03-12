@@ -4,6 +4,7 @@ public class Game {
 	private int turnNo = 0;
 	private Board board;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
+	private ArrayList<Integer> actionList = new ArrayList<Integer>();
 	
 	public void newGame(int playerCount) {
 		board = new Board();
@@ -18,29 +19,52 @@ public class Game {
 	}
 	
 	public void turn(Board board) {
+		int counter = 0;
+
 		// Get current player
 		Player player = playerList.get(turnNo);
 		boolean doubles = false;
+
+		System.out.println("It is player " + turnNo + "'s turn.");
 		
 		do {
 		// Roll dice
 		int[] dice = player.roll();
 		doubles = dice[0] == dice[1];
+		counter += doubles ? 1:0;
+
+		if(counter == 3){ // If player has rolled a double 3 times
+			player.setPosition(0/* change this to Jail position */); // Set player position to jail
+			player.setJailed(true); // Change player actions to jailed actions
+			break; // End turn immediately
+		}
+
+		System.out.println("Rolled a " + (dice[0] + dice[1]) + "! (" + dice[0] + " and " + dice[1] + ")");
 		
 		// Move player
 		player.move(dice[0] + dice[1]);
-		System.out.println("Player " + turnNo + "\'s position: " + player.getPosition());
+		Property curProp = board.getProperty(player.getPosition());
+
+		System.out.println("Currently at " + curProp.getName()+ ".");
+
+		if(curProp.getOwner() != player.getTurnNum()){ // If player does not own property
+			doAction(3, player); // Give money to owner of property
+		}
 		
 		// Make any transactions
-		board.getProperty(player.getPosition()).getAction());
+		System.out.println("0: Buy property");
+		System.out.println("1: Sell property");
+		System.out.println("2: Mortgage property");
+		System.out.println("");
+		
 		} while(doubles);
 		
 		// Increment turn
 		turnNo++;
 	}
 
-	private void propertyAction(int action, Player currentPlayer) {
-		Property p = board.getProperty(currentPlayer.getPosition());
+	private void doAction(int action, Player player) {
+		Property property = board.getProperty(player.getPosition());
 		switch(action){
 			case 0: // Buy property
 				break;
@@ -49,9 +73,9 @@ public class Game {
 			case 2: // Mortgage property
 				break;
 			case 3: // Remove money
-				if(currentPlayer.getTurnNum() != p.getOwner()) {
-					currentPlayer.changeMoney(p.getPenalty());
-					playerList.get(p.getOwner()).changeMoney(p.getPenalty());
+				if(player.getTurnNum() != property.getOwner()) {
+					player.changeMoney(property.getPenalty());
+					playerList.get(property.getOwner()).changeMoney(p.getPenalty());
 				}
 				break;
 		}
