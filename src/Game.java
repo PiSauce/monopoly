@@ -67,6 +67,12 @@ public class Game {
 		Property property = board.getProperty(player.getPosition());
 		switch(action){
 			case 0: // Buy property
+				if(property.getOwner() == -1 && player.getMoney() >= property.getPrice()) // If unowned and player has enough money
+					player.changeMoney(-property.getPrice()); // Remove money from player
+					property.setOwner(player.getTurnNum()); // Set property owner to current player
+				} else {
+					System.out.println("Property already has an owner!");
+				}
 				break;
 			case 1: // Sell property
 				break;
