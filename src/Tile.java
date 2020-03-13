@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 public abstract class Tile {
     // Instance variables
     private String name;
-    private int action;
+    private ArrayList<Integer> actions;
 
     public Tile(String name){
         this.name = name;
@@ -15,11 +17,14 @@ public abstract class Tile {
         this.name = name;
     }
 
-    public int getAction() {
-        return action;
+    public ArrayList<Integer> getActions() {
+        return actions;
     }
 
-    public void setAction(int action) {
-        this.action = action;
+    public void setAction(ArrayList<Integer> actions) {
+        this.actions.clear();
+        for (Integer i : actions) {
+            this.actions.add(i);
+        }
     }
 }
