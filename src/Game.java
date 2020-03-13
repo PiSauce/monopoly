@@ -43,18 +43,26 @@ public class Game {
 		
 		// Move player
 		player.move(dice[0] + dice[1]);
-		Property curProp = board.getProperty(player.getPosition());
-		System.out.println("Currently at " + curProp.getName()+ ".");
-
-		if((curProp).getOwner() != player.getTurnNum()) { // If player does not own property
-			doAction(3, player); // Give money to owner of property
-		}
+		Tile curTile = board.getTile(player.getPosition());
+		System.out.println("Currently at " + curTile.getName()+ ".");
 		
 		// Make any transactions
-		System.out.println("0: Buy property");
-		System.out.println("1: Sell property");
-		System.out.println("2: Mortgage property");
-		System.out.println("");
+		if(curTile instanceof Property){ // If current tile is a property
+			Property tile = (Property) curTile;
+			if(tile.getOwner() != player.getTurnNum() && tile.getOwner() != -1) { // If player does not own property and property has owner
+				doAction(3, player, tile); // Give money to owner of property
+			}
+		}
+
+		if(curTile instanceof TaxTile){ // If current tile is a tax tile
+			TaxTile tile = (TaxTile) curTile;
+			doAction(player, tile);
+		}
+
+		if(curTile instanceof Community){ // If current tile is a community chest
+			Community chest = (Community) curTile;
+			doAction(player, chest);
+		}
 		
 		} while(doubles);
 		
@@ -62,12 +70,17 @@ public class Game {
 		turnNo++;
 	}
 
-	private void doAction(int action, Player player) {
-		Property property = board.getProperty(player.getPosition());
-		switch(action){
-			case -1: // Invalid action
-				break;
+	private void doAction(Player player, TaxTile tile){
+		player.changeMoney(-tile.getTax()); // Only one action for taxes
+	}
 
+	private void doAction(Player player, Community chest){
+		Card card = board.drawChest();
+		cardAction(card.getID(), player);
+	}
+
+	private void doAction(int action, Player player, Property property) {
+		switch(action){
 			// Property actions
 			case 0: // Buy property
 				if(property.getOwner() == -1 && player.getMoney() >= property.getPrice()){ // If unowned and player has enough money
@@ -87,19 +100,6 @@ public class Game {
 					playerList.get(property.getOwner()).changeMoney(property.getPenalty());
 				}
 				break;
-			
-			// Special Tile actions
-			// Community chest actions
-			case 10: // Draw from community chest pile
-				cardAction(board.chestDeck.draw().getID(), player);
-			
-			// Chance actions
-			case 11: // Draw from chance card pile
-				cardAction(board.chanceDeck.draw().getID(), player);
-			
-			// Taxes
-			case 12: // Remove x amount from player
-				player.changeMoney(-board.getTax(player.getPosition()));
 		}
 	}
 	
