@@ -62,5 +62,13 @@ public class Property extends Tile{
 	
 	public void setOwner(int owner){
 		this.owner = owner;
-	}	
+	}
+
+	public int getHouses() {
+		return houses;
+	}
+
+	public int getHotels() {
+		return hotels;
+	}
 }
