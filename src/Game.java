@@ -4,15 +4,6 @@ public class Game {
 	private int turnNo = 0;
 	private Board board;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
-	private ArrayList<Integer> actionList = new ArrayList<Integer>();
-
-	/*
-
-	TODO: Add sell property action
-	TODO: Add mortgage action
-	TODO: Add chance and community chest actions
-
-	*/
 	
 	public void newGame(int playerCount) {
 		board = new Board();
@@ -52,18 +43,52 @@ public class Game {
 		
 		// Move player
 		player.move(dice[0] + dice[1]);
-		Property curProp = board.getProperty(player.getPosition());
-		System.out.println("Currently at " + curProp.getName()+ ".");
-
-		if((curProp).getOwner() != player.getTurnNum()) { // If player does not own property
-			doAction(3, player); // Give money to owner of property
-		}
+		Tile curTile = board.getTile(player.getPosition());
+		System.out.println("Currently at " + curTile.getName()+ ".");
 		
 		// Make any transactions
-		System.out.println("0: Buy property");
-		System.out.println("1: Sell property");
-		System.out.println("2: Mortgage property");
-		System.out.println("");
+		if(curTile instanceof Property){ // If current tile is a property
+			Property tile = (Property) curTile;
+			ArrayList<Integer> validActions = new ArrayList<Integer>();
+
+			if(tile.getOwner() == -1) { // If property is unowned
+				System.out.println("0: Buy " + tile.getName() + "? $" + tile.getPrice());
+				validActions.add(0);
+			} else { // If property is owned
+				if(tile.getOwner() != player.getTurnNum()) { // If player does not own property
+					doAction(-1, player, tile); // Give money to owner of property
+				} else { // If player does own peoperty
+					if(tile.getHouses() != 0 && tile.getHotels() == 0){
+						System.out.println("1: Mortgage Property");
+						validActions.add(1);
+					}
+					if(tile.getHouses() != 0){
+						System.out.println("2: Sell Houses");
+						validActions.add(2);
+					}
+					if(tile.getHotels() != 0){
+						System.out.println("3: Sell Hotels");
+						validActions.add(3);
+					}
+				}
+			}
+			
+		}
+
+		if(curTile instanceof TaxTile){ // If current tile is a tax tile
+			TaxTile tile = (TaxTile) curTile;
+			doAction(player, tile);
+		}
+
+		if(curTile instanceof Community){ // If current tile is a community chest
+			Community chest = (Community) curTile;
+			doAction(player, chest);
+		}
+
+		if(curTile instanceof Chance){ // If current tile is a chance card
+			Chance chance = (Chance) curTile;
+			doAction(player, chance);
+		}
 		
 		} while(doubles);
 		
@@ -71,8 +96,25 @@ public class Game {
 		turnNo++;
 	}
 
-	private void doAction(int action, Player player) {
-		Property property = board.getProperty(player.getPosition());
+	// Tax tile actions
+	private void doAction(Player player, TaxTile tile){
+		player.changeMoney(-tile.getTax()); // Only one action for taxes
+	}
+
+	// Community chest actions
+	private void doAction(Player player, Community chest){
+		Card card = board.drawChest();
+		cardAction(card.getID(), player);
+	}
+
+	// Chance card actions
+	private void doAction(Player player, Chance chance){
+		Card card = board.drawChance();
+		cardAction(card.getID(), player);
+	}
+
+	// Property actions
+	private void doAction(int action, Player player, Property property) {
 		switch(action){
 			case 0: // Buy property
 				if(property.getOwner() == -1 && player.getMoney() >= property.getPrice()){ // If unowned and player has enough money
@@ -82,11 +124,13 @@ public class Game {
 					System.out.println("Property already has an owner!");
 				}
 				break;
-			case 1: // Sell property
+			case 1: // Mortgage property
 				break;
-			case 2: // Mortgage property
+			case 2: // Sell houses
 				break;
-			case 3: // Remove money
+			case 3: // Sell hotels
+				break;
+			case -1: // Change owner of money
 				if(player.getTurnNum() != property.getOwner()) {
 					player.changeMoney(property.getPenalty());
 					playerList.get(property.getOwner()).changeMoney(property.getPenalty());

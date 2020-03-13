@@ -7,16 +7,18 @@ public class Property extends Tile{
 	private int penalty; // rent to pay
 	private int owner = -1;
 
-	public Property(){
-		super("blank");
+	public Property(String name){
+		super(name);
 		this.price = 1;
 		this.penalty = 1;
+		this.houses = this.hotels = 0;
 	}
 
 	public Property(String name, int price, int penalty) {
 		super(name);
 		this.price = price;
 		this.penalty = penalty;
+		this.houses = this.hotels = 0;
 	}
 
 	public void setHotels(int hotels) {
@@ -56,5 +58,13 @@ public class Property extends Tile{
 	
 	public void setOwner(int owner){
 		this.owner = owner;
-	}	
+	}
+
+	public int getHouses() {
+		return houses;
+	}
+
+	public int getHotels() {
+		return hotels;
+	}
 }
