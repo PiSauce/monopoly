@@ -74,6 +74,10 @@ public class Game {
 	private void doAction(int action, Player player) {
 		Property property = board.getProperty(player.getPosition());
 		switch(action){
+			case -1: // Invalid action
+				break;
+
+			// Property actions
 			case 0: // Buy property
 				if(property.getOwner() == -1 && player.getMoney() >= property.getPrice()){ // If unowned and player has enough money
 					player.changeMoney(-property.getPrice()); // Remove money from player
@@ -86,12 +90,26 @@ public class Game {
 				break;
 			case 2: // Mortgage property
 				break;
-			case 3: // Remove money
+			case 3: // Change owner of money
 				if(player.getTurnNum() != property.getOwner()) {
 					player.changeMoney(property.getPenalty());
 					playerList.get(property.getOwner()).changeMoney(property.getPenalty());
 				}
 				break;
+			
+			// Community chest actions
+			case 10: // Draw from community chest pile
+				cardAction(board.chestDeck.draw().getID(), player);
+			
+			// Chance actions
+			case 11: // Draw from chance card pile
+				cardAction(board.chanceDeck.draw().getID(), player);
+			
+			// Taxes
+			case 20: // Remove $200 from player
+				player.changeMoney(-200);
+			case 21: // Remove $100 from player
+				player.changeMoney(-100);
 		}
 	}
 	
