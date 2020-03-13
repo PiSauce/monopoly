@@ -11,10 +11,6 @@ public class Property extends Tile{
 		super("blank");
 		this.price = 1;
 		this.penalty = 1;
-
-		addAction(0);
-		addAction(1);
-		addAction(2);
 	}
 
 	public Property(String name){
