@@ -63,6 +63,11 @@ public class Game {
 			Community chest = (Community) curTile;
 			doAction(player, chest);
 		}
+
+		if(curTile instanceof Chance){ // If current tile is a chance card
+			Chance chance = (Chance) curTile;
+			doAction(player, chance);
+		}
 		
 		} while(doubles);
 		
@@ -70,18 +75,26 @@ public class Game {
 		turnNo++;
 	}
 
+	// Tax tile actions
 	private void doAction(Player player, TaxTile tile){
 		player.changeMoney(-tile.getTax()); // Only one action for taxes
 	}
 
+	// Community chest actions
 	private void doAction(Player player, Community chest){
 		Card card = board.drawChest();
 		cardAction(card.getID(), player);
 	}
 
+	// Chance card actions
+	private void doAction(Player player, Chance chance){
+		Card card = board.drawChance();
+		cardAction(card.getID(), player);
+	}
+
+	// Property actions
 	private void doAction(int action, Player player, Property property) {
 		switch(action){
-			// Property actions
 			case 0: // Buy property
 				if(property.getOwner() == -1 && player.getMoney() >= property.getPrice()){ // If unowned and player has enough money
 					player.changeMoney(-property.getPrice()); // Remove money from player
