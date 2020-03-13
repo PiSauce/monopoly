@@ -4,15 +4,6 @@ public class Game {
 	private int turnNo = 0;
 	private Board board;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
-	private ArrayList<Integer> actionList = new ArrayList<Integer>();
-
-	/*
-
-	TODO: Add sell property action
-	TODO: Add mortgage action
-	TODO: Add chance and community chest actions
-
-	*/
 	
 	public void newGame(int playerCount) {
 		board = new Board();
