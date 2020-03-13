@@ -73,12 +73,15 @@ public class Board {
 	}
 
 	// gets property a player purchases on the board
-	public Property getProperty(int pos) {
-		return (Property) tileList.get(pos);
-	}
-
-	public int getTax(int pos) {
-		return ((TaxTile) tileList.get(pos)).getTax();
+	public Tile getTile(int pos) {
+		Object t = tileList.get(pos);
+		if(t instanceof Property){
+			return (Property) t;
+		} else if(t instanceof TaxTile){
+			return (TaxTile) t;
+		} else { // Should not happen
+			return (Tile) t;
+		}
 	}
 
 	// gets property and assigns a owner to the purchased property
