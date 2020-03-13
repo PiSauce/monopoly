@@ -26,6 +26,12 @@ public abstract class Tile {
         this.actions.add(action);
     }
 
+    public void removeAction(int action) {
+        for (int i = 0; i < actions.size(); i++) {
+            if(actions.get(i) == action) actions.remove(i);
+        }
+    }
+
     public void clearActions() {
         this.actions.clear();
     }
