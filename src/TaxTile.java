@@ -5,6 +5,7 @@ public class TaxTile extends Tile {
         super(name);
         if(name == "Income Tax") setTax(200);; // Remove $200
         if(name == "Luxury Tax") setTax(100);; // Remove $100
+        addAction(12); // Tax action
     }
 
     public int getTax() {
