@@ -1,4 +1,4 @@
-public class Tile {
+public abstract class Tile {
     // Instance variables
     private String name;
     private int action;
