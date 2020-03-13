@@ -13,6 +13,12 @@ public class Property extends Tile{
 		this.penalty = 1;
 	}
 
+	public Property(String name){
+		super(name);
+		this.price = 1;
+		this.penalty = 1;
+	}
+
 	public Property(String name, int price, int penalty) {
 		super(name);
 		this.price = price;
