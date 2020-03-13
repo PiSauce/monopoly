@@ -7,7 +7,6 @@ public abstract class Tile {
 
     public Tile(String name){
         this.name = name;
-        actions.add(-1);
     }
 
     public String getName() {
