@@ -13,8 +13,10 @@ public class Board {
 
 	public void initTiles() {
 		// Brown properties
-		tileList.add(new Property("Mediterranean"));		
-		tileList.add(new Property("Baltic Avenue"));					
+		tileList.add(new Property("Mediterranean"));
+		tileList.add(new Community());
+		tileList.add(new Property("Baltic Avenue"));	
+		tileList.add(new TaxTile("Income Tax"));
 			
 		// Light blue properties
 		tileList.add(new Property("Oriental Avenue"));			
@@ -73,6 +75,10 @@ public class Board {
 	// gets property a player purchases on the board
 	public Property getProperty(int pos) {
 		return (Property) tileList.get(pos);
+	}
+
+	public int getTax(int pos) {
+		return ((TaxTile) tileList.get(pos)).getTax();
 	}
 
 	// gets property and assigns a owner to the purchased property
