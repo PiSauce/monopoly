@@ -97,6 +97,7 @@ public class Game {
 				}
 				break;
 			
+			// Special Tile actions
 			// Community chest actions
 			case 10: // Draw from community chest pile
 				cardAction(board.chestDeck.draw().getID(), player);
@@ -106,10 +107,8 @@ public class Game {
 				cardAction(board.chanceDeck.draw().getID(), player);
 			
 			// Taxes
-			case 20: // Remove $200 from player
-				player.changeMoney(-200);
-			case 21: // Remove $100 from player
-				player.changeMoney(-100);
+			case 12: // Remove x amount from player
+				player.changeMoney(-board.getTax(player.getPosition()));
 		}
 	}
 	
