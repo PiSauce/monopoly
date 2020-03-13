@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Property extends Tile{
 
 	// Instance Variables
