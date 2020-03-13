@@ -21,10 +21,11 @@ public abstract class Tile {
         return actions;
     }
 
-    public void setActions(ArrayList<Integer> actions) {
+    public void addAction(int action) {
+        this.actions.add(action);
+    }
+
+    public void clearActions() {
         this.actions.clear();
-        for (Integer i : actions) {
-            this.actions.add(i);
-        }
     }
 }
