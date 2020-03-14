@@ -16,7 +16,7 @@ public class Board {
 		tileList.add(new Property("Mediterranean"));
 		tileList.add(new Community());
 		tileList.add(new Property("Baltic Avenue"));	
-		tileList.add(new TaxTile("Income Tax"));
+		tileList.add(new TaxTile("Income Tax", 200));
 			
 		// Light blue properties
 		tileList.add(new Property("Oriental Avenue"));			
