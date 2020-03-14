@@ -18,14 +18,13 @@ public class Board {
 		tileList.add(new Property("Baltic Avenue"));	
 
 		tileList.add(new TaxTile("Income Tax", 200));
-		tileList.add(new Railroad("Reading"); // Railroads automatically add Railroad to the end
+		tileList.add(new Railroad("Reading")); // Railroads automatically add Railroad to the end
 			
 		// Light blue properties
 		tileList.add(new Property("Oriental Avenue"));		
 		tileList.add(new Chance());	
 		tileList.add(new Property("Vermont Avenue"));
 		tileList.add(new Property("Connecticut"));
-			
 			
 		// Magenta properties
 		tileList.add(new Property("St. Charles Place"));			
@@ -44,7 +43,7 @@ public class Board {
 			
 		// Yellow properties
 		tileList.add(new Property("Atlantic"));			
-		tileList.add(new Property("Ventnor"));			
+		tileList.add(new Property("Ventnor"));	
 		tileList.add(new Property("Marvin Gardins"));
 					
 		// Green properties
