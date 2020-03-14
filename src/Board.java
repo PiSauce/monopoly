@@ -27,19 +27,26 @@ public class Board {
 		tileList.add(new Property("Connecticut"));
 			
 		// Magenta properties
-		tileList.add(new Property("St. Charles Place"));			
+		tileList.add(new Property("St. Charles Place"));
+		tileList.add(new Utility("Electric company"));			
 		tileList.add(new Property("Static Avenue"));			
 		tileList.add(new Property("Virginia Avenue"));
+
+		tileList.add(new Railroad("Pensylvannia"));
 			
 		// Orange properties
-		tileList.add(new Property("St. James Place"));			
+		tileList.add(new Property("St. James Place"));	
+		tileList.add(new Community());
 		tileList.add(new Property("Tennessee Avenue"));			
 		tileList.add(new Property("New York Avenue"));
 			
 		// Red properties
-		tileList.add(new Property("Kentucky Avenue"));			
+		tileList.add(new Property("Kentucky Avenue"));		
+		tileList.add(new Chance());	
 		tileList.add(new Property("Indiana Avenue"));			
-		tileList.add(new Property("Illinois Avenue"));			
+		tileList.add(new Property("Illinois Avenue"));
+
+		tileList.add(new Railroad("B&O"));
 			
 		// Yellow properties
 		tileList.add(new Property("Atlantic"));			
@@ -50,6 +57,8 @@ public class Board {
 		tileList.add(new Property("Pacific Avenue"));			
 		tileList.add(new Property("North Carolina"));			
 		tileList.add(new Property("Pennsylvania"));
+
+		tileList.add(new Railroad("Short Line"));
 			
 		// Dark blue properties
 		tileList.add(new Property("Park Place"));	
