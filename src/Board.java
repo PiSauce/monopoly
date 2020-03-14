@@ -49,19 +49,23 @@ public class Board {
 		tileList.add(new Railroad("B&O"));
 			
 		// Yellow properties
-		tileList.add(new Property("Atlantic"));			
-		tileList.add(new Property("Ventnor"));	
+		tileList.add(new Property("Atlantic Avenue"));			
+		tileList.add(new Property("Ventnor Avenue"));
+		tileList.add(new Utility("Water Works"));
 		tileList.add(new Property("Marvin Gardins"));
 					
 		// Green properties
 		tileList.add(new Property("Pacific Avenue"));			
-		tileList.add(new Property("North Carolina"));			
+		tileList.add(new Property("North Carolina"));
+		tileList.add(new Community());			
 		tileList.add(new Property("Pennsylvania"));
 
 		tileList.add(new Railroad("Short Line"));
+		tileList.add(new Chance());
 			
 		// Dark blue properties
-		tileList.add(new Property("Park Place"));	
+		tileList.add(new Property("Park Place"));
+		tileList.add(new TaxTile("Luxury Tax", 100));
 		tileList.add(new Property("Boardwalk"));
 	}
 
