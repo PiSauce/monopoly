@@ -1,10 +1,9 @@
 public class TaxTile extends Tile {
     private int tax;
 
-    public TaxTile(String name){
+    public TaxTile(String name, int tax){
         super(name);
-        if(name == "Income Tax") setTax(200);; // Remove $200
-        if(name == "Luxury Tax") setTax(100);; // Remove $100
+        this.tax = tax;
     }
 
     public int getTax() {
