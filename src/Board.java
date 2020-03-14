@@ -12,6 +12,8 @@ public class Board {
 	int action;
 
 	public void initTiles() {
+		tileList.add(new Go());
+
 		// Brown properties
 		tileList.add(new Property("Mediterranean"));
 		tileList.add(new Community());
@@ -25,6 +27,8 @@ public class Board {
 		tileList.add(new Chance());	
 		tileList.add(new Property("Vermont Avenue"));
 		tileList.add(new Property("Connecticut"));
+
+		tileList.add(new Jail());
 			
 		// Magenta properties
 		tileList.add(new Property("St. Charles Place"));
@@ -39,6 +43,7 @@ public class Board {
 		tileList.add(new Community());
 		tileList.add(new Property("Tennessee Avenue"));			
 		tileList.add(new Property("New York Avenue"));
+		tileList.add(new FreeParking());
 			
 		// Red properties
 		tileList.add(new Property("Kentucky Avenue"));		
@@ -53,6 +58,8 @@ public class Board {
 		tileList.add(new Property("Ventnor Avenue"));
 		tileList.add(new Utility("Water Works"));
 		tileList.add(new Property("Marvin Gardins"));
+
+		tileList.add(new GoToJail());
 					
 		// Green properties
 		tileList.add(new Property("Pacific Avenue"));			
