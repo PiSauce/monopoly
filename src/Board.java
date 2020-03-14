@@ -11,6 +11,8 @@ public class Board {
 	Deck chestDeck;
 	int action;
 
+	// TODO: Add prices and rent to each property
+	// TODO: Maybe double check names of each tile
 	public void initTiles() {
 		tileList.add(new Go());
 
