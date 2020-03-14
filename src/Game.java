@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
 	private int turnNo = 0;
@@ -7,6 +8,9 @@ public class Game {
 	
 	public void newGame(int playerCount) {
 		board = new Board();
+		board.initTiles();
+		board.initChanceDeck();
+		board.initChestDeck();
 		playerList.clear();
 		for(int i = 0; i < playerCount; i++) {
 			playerList.add(new Player(i, 0));
@@ -17,14 +21,21 @@ public class Game {
 		}
 	}
 	
+// Turns ------------------------------------------------------
+// TODO: Add actions for Go tile
+// TODO: Add actions for GoToJail tile
+// TODO: Finish actions for Railroad tiles
+// TODO: Add trading (?)
+// TODO: Add actions for if player is jailed
 	public void turn(Board board) {
+		ArrayList<Integer> validActions = new ArrayList<Integer>();
 		int counter = 0;
 
 		// Get current player
 		Player player = playerList.get(turnNo);
 		boolean doubles = false;
 
-		System.out.println("It is player " + turnNo + "'s turn.");
+		System.out.println("It is player " + (turnNo + 1) + "'s turn.");
 		
 		do {
 		// Roll dice
@@ -33,7 +44,9 @@ public class Game {
 		counter += doubles ? 1:0;
 
 		System.out.println("Rolled a " + (dice[0] + dice[1]) + "! (" + dice[0] + " and " + dice[1] + ")");
+		if(doubles) System.out.println("Doubles!");;
 
+		// TODO: Add jail position here
 		if(counter == 3){ // If player has rolled a double 3 times
 			System.out.println("Rolled a double 3 times! Player " + player.getTurnNum() + " has been sent to jail!");
 			player.setPosition(0/* change this to Jail position */); // Set player position to jail
@@ -49,8 +62,8 @@ public class Game {
 		// Make any transactions
 		if(curTile instanceof Property){ // If current tile is a property
 			Property tile = (Property) curTile;
-			ArrayList<Integer> validActions = new ArrayList<Integer>();
 
+			// Print out valid actions
 			if(tile.getOwner() == -1) { // If property is unowned
 				System.out.println("0: Buy " + tile.getName() + "? $" + tile.getPrice());
 				validActions.add(0);
@@ -72,7 +85,25 @@ public class Game {
 					}
 				}
 			}
-			
+
+			int input = checkInput(validActions);
+			doAction(input, player, tile);
+		}
+
+		if(curTile instanceof Railroad){ // If current tile is a railroad
+			Railroad tile = (Railroad) curTile;
+
+			// Print out valid actions
+			if(tile.getOwner() == -1) { // If property is unowned
+				System.out.println("0: Buy " + tile.getName() + "? $" + tile.getPrice());
+				validActions.add(0);
+			} else { // If property is owned
+				if(tile.getOwner() != player.getTurnNum()) { // If player does not own property
+					doAction(-1, player, tile); // Give money to owner of property
+				} else { // If player does own peoperty
+					
+				}
+			}
 		}
 
 		if(curTile instanceof TaxTile){ // If current tile is a tax tile
@@ -93,9 +124,46 @@ public class Game {
 		} while(doubles);
 		
 		// Increment turn
-		turnNo++;
+		if(++turnNo % playerList.size() == 0) turnNo--;
 	}
 
+	private int checkInput(ArrayList<Integer> validActions) {
+		Scanner in = new Scanner(System.in);
+		boolean valid = false;
+		int input = -1;
+
+		while (!valid) {
+			System.out.println("Type an action: ");
+			String userInput = in.nextLine();
+			try {
+				input = Integer.parseInt(userInput);
+			} catch (Exception e) {
+				continue;
+			}
+			if (validActions.contains(input)) {
+				valid = true;
+			} else {
+				valid = false;
+			}
+		}
+
+		in.close();
+		return input;
+	}
+
+// Actions for each tile type added below
+// - Tax tile
+// - Community and Chance card
+// - Railroad
+// 		- TODO: Proper penalties for railroads
+// 			- Needs to be 25 * 2^(Number of railroads owned)
+//		- TODO: Mortgaging railroads
+// - Property
+// 		- TODO: Mortgage prices
+// 		- TODO: Buying and selling houses and hotels
+// - Card
+// 		- TODO: Proper actions for each card
+// 		- TODO: Adding print statemets to clarify to player
 	// Tax tile actions
 	private void doAction(Player player, TaxTile tile){
 		player.changeMoney(-tile.getTax()); // Only one action for taxes
@@ -113,15 +181,43 @@ public class Game {
 		cardAction(card.getID(), player);
 	}
 
-	// Property actions
+// Railroad actions ------------------------------------------------------
+	private void doAction(int action, Player player, Railroad property) {
+		switch(action){
+			case 0: // Buy property
+				if(property.getOwner() == -1 && player.getMoney() >= property.getPrice()){ // If unowned and player has enough money
+					player.changeMoney(-property.getPrice()); // Remove money from player
+					property.setOwner(player.getTurnNum()); // Set property owner to current player
+					System.out.println("Bought " + property.getName() + "!");
+					System.out.println("Currently have $" + player.getMoney() + ".");
+					System.out.println("");
+				} else {
+					System.out.println("Property already has an owner!"); // Should not happen
+				}
+				break;
+			case 1: // Mortgage property
+				
+			case -1: // Change owner of money
+				if(player.getTurnNum() != property.getOwner()) {
+					player.changeMoney(property.getPenalty());
+					playerList.get(property.getOwner()).changeMoney(property.getPenalty());
+				}
+				break;
+		}
+	}
+
+// Property actions ------------------------------------------------------
 	private void doAction(int action, Player player, Property property) {
 		switch(action){
 			case 0: // Buy property
 				if(property.getOwner() == -1 && player.getMoney() >= property.getPrice()){ // If unowned and player has enough money
 					player.changeMoney(-property.getPrice()); // Remove money from player
 					property.setOwner(player.getTurnNum()); // Set property owner to current player
+					System.out.println("Bought " + property.getName() + "!");
+					System.out.println("Currently have $" + player.getMoney() + ".");
+					System.out.println("");
 				} else {
-					System.out.println("Property already has an owner!");
+					System.out.println("Property already has an owner!"); // Should not happen
 				}
 				break;
 			case 1: // Mortgage property
@@ -139,7 +235,10 @@ public class Game {
 		}
 	}
 	
+// Card actions ------------------------------------------------------
 	private void cardAction(int action, Player currentPlayer) {
+		// 0 - 15 => Chance cards
+		// 16 - 31 => Community chest
 		switch(action) {
 		case 0:
 			currentPlayer.setPosition(0);

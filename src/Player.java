@@ -30,7 +30,7 @@ public class Player {
 	}
 	
 	public int[] roll() {
-		int[] dice = {(int)Math.round(Math.random()*6), (int)Math.round(Math.random()*6)};
+		int[] dice = {(int)Math.round(Math.random()*5) + 1, (int)Math.round(Math.random()*5) + 1};
 		return dice;
 	}
 	

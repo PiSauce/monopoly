@@ -11,46 +11,70 @@ public class Board {
 	Deck chestDeck;
 	int action;
 
+	// TODO: Add prices and rent to each property
+	// TODO: Maybe double check names of each tile
 	public void initTiles() {
+		tileList.add(new Go());
+
 		// Brown properties
 		tileList.add(new Property("Mediterranean"));
 		tileList.add(new Community());
 		tileList.add(new Property("Baltic Avenue"));	
-		tileList.add(new TaxTile("Income Tax"));
+
+		tileList.add(new TaxTile("Income Tax", 200));
+		tileList.add(new Railroad("Reading")); // Railroads automatically add Railroad to the end
 			
 		// Light blue properties
-		tileList.add(new Property("Oriental Avenue"));			
+		tileList.add(new Property("Oriental Avenue"));		
+		tileList.add(new Chance());	
 		tileList.add(new Property("Vermont Avenue"));
 		tileList.add(new Property("Connecticut"));
-			
+
+		tileList.add(new Jail());
 			
 		// Magenta properties
-		tileList.add(new Property("St. Charles Place"));			
+		tileList.add(new Property("St. Charles Place"));
+		tileList.add(new Utility("Electric company"));			
 		tileList.add(new Property("Static Avenue"));			
 		tileList.add(new Property("Virginia Avenue"));
+
+		tileList.add(new Railroad("Pensylvannia"));
 			
 		// Orange properties
-		tileList.add(new Property("St. James Place"));			
+		tileList.add(new Property("St. James Place"));	
+		tileList.add(new Community());
 		tileList.add(new Property("Tennessee Avenue"));			
 		tileList.add(new Property("New York Avenue"));
+		tileList.add(new FreeParking());
 			
 		// Red properties
-		tileList.add(new Property("Kentucky Avenue"));			
+		tileList.add(new Property("Kentucky Avenue"));		
+		tileList.add(new Chance());	
 		tileList.add(new Property("Indiana Avenue"));			
-		tileList.add(new Property("Illinois Avenue"));			
+		tileList.add(new Property("Illinois Avenue"));
+
+		tileList.add(new Railroad("B&O"));
 			
 		// Yellow properties
-		tileList.add(new Property("Atlantic"));			
-		tileList.add(new Property("Ventnor"));			
+		tileList.add(new Property("Atlantic Avenue"));			
+		tileList.add(new Property("Ventnor Avenue"));
+		tileList.add(new Utility("Water Works"));
 		tileList.add(new Property("Marvin Gardins"));
+
+		tileList.add(new GoToJail());
 					
 		// Green properties
 		tileList.add(new Property("Pacific Avenue"));			
-		tileList.add(new Property("North Carolina"));			
+		tileList.add(new Property("North Carolina"));
+		tileList.add(new Community());			
 		tileList.add(new Property("Pennsylvania"));
+
+		tileList.add(new Railroad("Short Line"));
+		tileList.add(new Chance());
 			
 		// Dark blue properties
-		tileList.add(new Property("Park Place"));	
+		tileList.add(new Property("Park Place"));
+		tileList.add(new TaxTile("Luxury Tax", 100));
 		tileList.add(new Property("Boardwalk"));
 	}
 
