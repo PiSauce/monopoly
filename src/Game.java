@@ -84,7 +84,19 @@ public class Game {
 		}
 
 		if(curTile instanceof Railroad){ // If current tile is a railroad
+			Railroad tile = (Railroad) curTile;
 
+			// Print out valid actions
+			if(tile.getOwner() == -1) { // If property is unowned
+				System.out.println("0: Buy " + tile.getName() + "? $" + tile.getPrice());
+				validActions.add(0);
+			} else { // If property is owned
+				if(tile.getOwner() != player.getTurnNum()) { // If player does not own property
+					doAction(-1, player, tile); // Give money to owner of property
+				} else { // If player does own peoperty
+					
+				}
+			}
 		}
 
 		if(curTile instanceof TaxTile){ // If current tile is a tax tile
@@ -128,6 +140,7 @@ public class Game {
 			}
 		}
 
+		in.close();
 		return input;
 	}
 
@@ -146,6 +159,31 @@ public class Game {
 	private void doAction(Player player, Chance chance){
 		Card card = board.drawChance();
 		cardAction(card.getID(), player);
+	}
+
+	// Railroad actions
+	private void doAction(int action, Player player, Railroad property) {
+		switch(action){
+			case 0: // Buy property
+				if(property.getOwner() == -1 && player.getMoney() >= property.getPrice()){ // If unowned and player has enough money
+					player.changeMoney(-property.getPrice()); // Remove money from player
+					property.setOwner(player.getTurnNum()); // Set property owner to current player
+					System.out.println("Bought " + property.getName() + "!");
+					System.out.println("Currently have $" + player.getMoney() + ".");
+					System.out.println("");
+				} else {
+					System.out.println("Property already has an owner!"); // Should not happen
+				}
+				break;
+			case 1: // Mortgage property
+				
+			case -1: // Change owner of money
+				if(player.getTurnNum() != property.getOwner()) {
+					player.changeMoney(property.getPenalty());
+					playerList.get(property.getOwner()).changeMoney(property.getPenalty());
+				}
+				break;
+		}
 	}
 
 	// Property actions
