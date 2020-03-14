@@ -21,6 +21,12 @@ public class Game {
 		}
 	}
 	
+// Turns ------------------------------------------------------
+// TODO: Add actions for Go tile
+// TODO: Add actions for GoToJail tile
+// TODO: Finish actions for Railroad tiles
+// TODO: Add trading (?)
+// TODO: Add actions for if player is jailed
 	public void turn(Board board) {
 		ArrayList<Integer> validActions = new ArrayList<Integer>();
 		int counter = 0;
@@ -40,6 +46,7 @@ public class Game {
 		System.out.println("Rolled a " + (dice[0] + dice[1]) + "! (" + dice[0] + " and " + dice[1] + ")");
 		if(doubles) System.out.println("Doubles!");;
 
+		// TODO: Add jail position here
 		if(counter == 3){ // If player has rolled a double 3 times
 			System.out.println("Rolled a double 3 times! Player " + player.getTurnNum() + " has been sent to jail!");
 			player.setPosition(0/* change this to Jail position */); // Set player position to jail
@@ -144,6 +151,19 @@ public class Game {
 		return input;
 	}
 
+// Actions for each tile type added below
+// - Tax tile
+// - Community and Chance card
+// - Railroad
+// 		- TODO: Proper penalties for railroads
+// 			- Needs to be 25 * 2^(Number of railroads owned)
+//		- TODO: Mortgaging railroads
+// - Property
+// 		- TODO: Mortgage prices
+// 		- TODO: Buying and selling houses and hotels
+// - Card
+// 		- TODO: Proper actions for each card
+// 		- TODO: Adding print statemets to clarify to player
 	// Tax tile actions
 	private void doAction(Player player, TaxTile tile){
 		player.changeMoney(-tile.getTax()); // Only one action for taxes
@@ -161,7 +181,7 @@ public class Game {
 		cardAction(card.getID(), player);
 	}
 
-	// Railroad actions
+// Railroad actions ------------------------------------------------------
 	private void doAction(int action, Player player, Railroad property) {
 		switch(action){
 			case 0: // Buy property
@@ -186,7 +206,7 @@ public class Game {
 		}
 	}
 
-	// Property actions
+// Property actions ------------------------------------------------------
 	private void doAction(int action, Player player, Property property) {
 		switch(action){
 			case 0: // Buy property
@@ -215,6 +235,7 @@ public class Game {
 		}
 	}
 	
+// Card actions ------------------------------------------------------
 	private void cardAction(int action, Player currentPlayer) {
 		// 0 - 15 => Chance cards
 		// 16 - 31 => Community chest
