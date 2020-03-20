@@ -12,13 +12,18 @@ public class Game {
 		board.initChanceDeck();
 		board.initChestDeck();
 		playerList.clear();
+
+		Scanner in = new Scanner(System.in);
+
 		for(int i = 0; i < playerCount; i++) {
 			playerList.add(new Player(i, 0));
 		}
 
-		while(true){
-			turn(board);
+		while(playerList.size() > 1){
+			turn(board, in);
 		}
+
+		in.close();
 	}
 	
 // Turns ------------------------------------------------------
@@ -27,7 +32,7 @@ public class Game {
 // TODO: Finish actions for Railroad tiles
 // TODO: Add trading (?)
 // TODO: Add actions for if player is jailed
-	public void turn(Board board) {
+	public void turn(Board board, Scanner in) {
 		ArrayList<Integer> validActions = new ArrayList<Integer>();
 		int counter = 0;
 
@@ -86,7 +91,7 @@ public class Game {
 				}
 			}
 
-			int input = checkInput(validActions);
+			int input = checkInput(validActions, in);
 			doAction(input, player, tile);
 		}
 
@@ -122,32 +127,20 @@ public class Game {
 		}
 		
 		} while(doubles);
-		
+
 		// Increment turn
 		if(++turnNo % playerList.size() == 0) turnNo--;
 	}
 
-	private int checkInput(ArrayList<Integer> validActions) {
-		Scanner in = new Scanner(System.in);
+	private int checkInput(ArrayList<Integer> validActions, Scanner in) {
 		boolean valid = false;
 		int input = -1;
 
 		while (!valid) {
-			System.out.println("Type an action: ");
-			String userInput = in.nextLine();
-			try {
-				input = Integer.parseInt(userInput);
-			} catch (Exception e) {
-				continue;
-			}
-			if (validActions.contains(input)) {
-				valid = true;
-			} else {
-				valid = false;
-			}
+			System.out.print("Type an action: ");
+			input = Integer.parseInt(in.nextLine());
+			valid = validActions.contains(input);
 		}
-
-		in.close();
 		return input;
 	}
 
