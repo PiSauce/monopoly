@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Game {
@@ -33,7 +34,7 @@ public class Game {
 // TODO: Add trading (?)
 // TODO: Add actions for if player is jailed
 	public void turn(Board board, Scanner in) {
-		ArrayList<Integer> validActions = new ArrayList<Integer>();
+		HashMap<Integer, String> validActions = new HashMap<Integer, String>();
 		int counter = 0;
 
 		// Get current player
@@ -71,23 +72,24 @@ public class Game {
 			// Print out valid actions
 			if(tile.getOwner() == -1) { // If property is unowned
 				System.out.println("0: Buy " + tile.getName() + "? $" + tile.getPrice());
-				validActions.add(0);
+				validActions.put(0, "Buy Property");
 			} else { // If property is owned
 				if(tile.getOwner() != player.getTurnNum()) { // If player does not own property
 					doAction(-1, player, tile); // Give money to owner of property
-				} else { // If player does own peoperty
-					if(tile.getHouses() != 0 && tile.getHotels() == 0){
-						System.out.println("1: Mortgage Property");
-						validActions.add(1);
-					}
-					if(tile.getHouses() != 0){
-						System.out.println("2: Sell Houses");
-						validActions.add(2);
-					}
-					if(tile.getHotels() != 0){
-						System.out.println("3: Sell Hotels");
-						validActions.add(3);
-					}
+				}
+			}
+			if(player.getProperties().size() >= 0){ // If player owns a property
+				if(tile.getHouses() != 0 && tile.getHotels() == 0){
+					System.out.println("1: Mortgage Property");
+					validActions.put(1, "Mortgage Property");
+				}
+				if(tile.getHouses() != 0){
+					System.out.println("2: Sell Houses");
+					validActions.put(2, "Sell Houses");
+				}
+				if(tile.getHotels() != 0){
+					System.out.println("3: Sell Hotels");
+					validActions.put(3, "Sell Hotels");
 				}
 			}
 
@@ -132,7 +134,7 @@ public class Game {
 		if(++turnNo % playerList.size() == 0) turnNo--;
 	}
 
-	private int checkInput(ArrayList<Integer> validActions, Scanner in) {
+	private int checkInput(HashMap<Integer, String> validActions, Scanner in) {
 		boolean valid = false;
 		int input = -1;
 
@@ -144,7 +146,9 @@ public class Game {
 				continue;
 			}
 			
-			valid = validActions.contains(input);
+			for (int i : validActions.keySet()) {
+				if(i == input) valid = true;
+			}
 		}
 		return input;
 	}
