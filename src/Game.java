@@ -138,7 +138,12 @@ public class Game {
 
 		while (!valid) {
 			System.out.print("Type an action: ");
-			input = Integer.parseInt(in.nextLine());
+			try {
+				input = Integer.parseInt(in.nextLine());
+			} catch (NumberFormatException e) {
+				continue;
+			}
+			
 			valid = validActions.contains(input);
 		}
 		return input;
