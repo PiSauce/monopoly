@@ -1,80 +1,89 @@
 import java.util.ArrayList;
+import javafx.scene.image.ImageView;
 
 public class Player {
-	private int money;
-	private int turnNum;
-	private int piece;
-	private int position;
-	private boolean jailed;
-	private ArrayList<Integer> properties = new ArrayList<Integer>();
-	private ArrayList<Card> cards = new ArrayList<Card>();
 	
-	public Player(int turnNum, int piece) {
-		this.turnNum = turnNum;
-		this.piece = piece;
-		this.money = 2000; // Default number
-		this.position = 0; // Starting position
-		this.jailed = false;
+	private String username;
+	private int id;
+	private ImageView token;
+	private int money = 1500;
+	private int position = 0;
+	private ArrayList<Landmark> properties = new ArrayList<Landmark>();
+	
+	public Player(String aUsername, int aID, ImageView aToken) {
+		setUsername(aUsername);
+		setID(aID);
+		setToken(aToken);		
+	}
+	
+	public void setUsername(String aUsername) {
+		username = aUsername;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setID(int aID) {
+		id = aID;
+	}
+	
+	public int getID() {
+		return id;
+	}
+	
+	public void setToken(ImageView aToken) {
+		token = aToken;
+		token.setPreserveRatio(false);
+		token.setFitWidth(30);
+		token.setFitHeight(30);
+	}
+	
+	public ImageView getToken() {
+		return token;
+	}
+	
+	public void addMoney(int someMoney) {
+		money += someMoney;
+	}
+	
+	public void reduceMoney(int someMoney) {
+		money -= someMoney;
 	}
 	
 	public int getMoney() {
 		return money;
 	}
 	
-	public void setMoney(int m) {
-		this.money = m;
+	public void setPosition(int aPosition) {
+		position = aPosition;
 	}
 	
-	public void changeMoney(int m) {
-		this.money += m;
+	public void moveForward(int steps) {
+		position += steps;
 	}
 	
-	public int[] roll() {
-		int[] dice = {(int)Math.round(Math.random()*6), (int)Math.round(Math.random()*6)};
-		return dice;
+	public void moveBackward(int steps) {
+		position -= steps;
 	}
 	
 	public int getPosition() {
 		return position;
 	}
-
-	public void setPosition(int pos) {
-		this.position = pos;
+	
+	public void addProperty(Landmark aProperty) {
+		properties.add(aProperty);
 	}
 	
-	public void move(int pos) {
-		this.position += pos;
+	public void removeProperty(Landmark aProperty) {
+		properties.remove(aProperty);
 	}
 	
-	public void addProperty(int prop) {
-		properties.add(prop);
-	}
-	
-	public void removeProperty(int prop) {
-		properties.remove(prop);
-	}
-	
-	public void addCard(Card card) {
-		cards.add(card);
-	}
-	
-	public void setPiece(int p) {
-		this.piece = p;
-	}
-	
-	public int getTurnNum() {
-		return turnNum;
-	}
-
-	public int getPiece(){
-		return piece;
-	}
-
-	public boolean isJailed() {
-		return jailed;
-	}
-
-	public void setJailed(boolean jailed) {
-		this.jailed = jailed;
+	public ArrayList<String> getPropertyDescriptions() {
+		ArrayList<String> propertyDescriptions = new ArrayList<String>();
+		for(Landmark aProperty: properties) {
+			propertyDescriptions.add(aProperty.getDescription());
+		}
+		return propertyDescriptions;
 	}
 }
