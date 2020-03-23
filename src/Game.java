@@ -302,6 +302,10 @@ public class Game {
 				break;
 			case 3: // Sell hotels
 				break;
+			case 4: // Buy houses
+				break;
+			case 5: // Buy hotels
+				break;
 			case -1: // Change owner of money
 				if(player.getTurnNum() != property.getOwner() && !property.isMortgaged()) {
 					player.changeMoney(property.getPenalty());
