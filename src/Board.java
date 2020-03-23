@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Board {
 	ArrayList<Tile> tileList = new ArrayList<Tile>();
+	ArrayList<Railroad> railroads = new ArrayList<Railroad>();
 	// initializing the two types of cards in the game
 	Deck chanceDeck;
 	Deck chestDeck;
