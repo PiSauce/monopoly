@@ -196,8 +196,6 @@ public class Game {
 // - Tax tile
 // - Community and Chance card
 // - Railroad
-// 		- TODO: Proper penalties for railroads
-// 			- Needs to be 25 * 2^(Number of railroads owned)
 //		- TODO: Mortgaging railroads
 // - Property
 // 		- TODO: Mortgage prices
@@ -207,6 +205,7 @@ public class Game {
 // 		- TODO: Adding print statemets to clarify to player
 // - Utility
 // 		- TODO: Add logic for player owning both utilities
+// TODO: Add mortgage prices to tiles
 	// Tax tile actions
 	private void doAction(Player player, TaxTile tile){
 		player.changeMoney(-tile.getTax()); // Only one action for taxes
@@ -243,8 +242,16 @@ public class Game {
 				
 			case -1: // Change owner of money
 				if(player.getTurnNum() != property.getOwner()) {
-					player.changeMoney(property.getPenalty());
-					playerList.get(property.getOwner()).changeMoney(property.getPenalty());
+					int owned = 0;
+					Player owner = playerList.get(property.getOwner());
+					for (Integer properties : owner.getProperties()){
+						for(Integer railroads : board.getRailroads()){
+							if(properties == railroads) owned++;
+						}
+					}
+					int penalty = property.getPenalty() * (int)Math.pow(2, owned-1);
+					player.changeMoney(-penalty);
+					playerList.get(property.getOwner()).changeMoney(penalty);
 				}
 				break;
 		}
