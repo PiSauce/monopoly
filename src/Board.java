@@ -9,6 +9,7 @@ public class Board {
 
 	// Creating tile groupings
 	ArrayList<Integer> railroads = new ArrayList<Integer>();
+	ArrayList<Integer> utilities = new ArrayList<Integer>();
 	ArrayList<Integer> brown = new ArrayList<Integer>();
 	ArrayList<Integer> lightBlue = new ArrayList<Integer>();
 	ArrayList<Integer> magenta = new ArrayList<Integer>();
@@ -86,24 +87,30 @@ public class Board {
 		// Creating tile groupings
 		brown.add(1);
 		brown.add(3);
+		railroads.add(5);
 		lightBlue.add(6);
 		lightBlue.add(8);
 		lightBlue.add(9);
 		magenta.add(11);
+		utilities.add(12);
 		magenta.add(13);
 		magenta.add(14);
+		railroads.add(15);
 		orange.add(16);
 		orange.add(18);
 		orange.add(19);
 		red.add(21);
 		red.add(23);
 		red.add(24);
+		railroads.add(25);
 		yellow.add(26);
 		yellow.add(27);
+		utilities.add(28);
 		yellow.add(29);
 		green.add(31);
 		green.add(32);
 		green.add(34);
+		railroads.add(35);
 		darkBlue.add(37);
 		darkBlue.add(39);
 
@@ -279,5 +286,13 @@ public class Board {
 
 	public void setDarkBlue(ArrayList<Integer> darkBlue) {
 		this.darkBlue = darkBlue;
+	}
+
+	public ArrayList<Integer> getUtilities() {
+		return utilities;
+	}
+
+	public void setUtilities(ArrayList<Integer> utilities) {
+		this.utilities = utilities;
 	}
 }
