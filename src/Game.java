@@ -6,6 +6,7 @@ public class Game {
 	private int turnNo = 0;
 	private Board board;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
+	private HashMap<Integer, String> validActions = new HashMap<Integer, String>();
 	
 	public void newGame(int playerCount) {
 		board = new Board();
@@ -34,7 +35,6 @@ public class Game {
 // TODO: Add trading (?)
 // TODO: Add actions for if player is jailed
 	public void turn(Board board, Scanner in) {
-		HashMap<Integer, String> validActions = new HashMap<Integer, String>();
 		int counter = 0;
 
 		// Get current player
