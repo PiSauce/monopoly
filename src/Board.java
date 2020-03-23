@@ -35,7 +35,7 @@ public class Board {
 		// Light blue properties
 		Property orientalAve = new Property("Oriental Avenue");
 		Property vermontAve = new Property("Vermont Avenue");
-		Property connecticutAve = new Property("Connecticut Avenue")
+		Property connecticutAve = new Property("Connecticut Avenue");
 
 		// Magenta properties
 		Property stCharles = new Property("St. Charles Place");
