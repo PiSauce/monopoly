@@ -28,14 +28,40 @@ public class Board {
 		tileList.add(new Go());
 
 		// Brown properties
+		Property mediterranean = new Property("Mediterranean");
+		Property balticAve = new Property("Baltic Avenue");
+
+		// Light blue properties
+		Property orientalAve = new Property("Oriental Avenue");
+		Property vermontAve = new Property("Vermont Avenue");
+		Property connecticutAve = new Property("Connecticut Avenue")
+
+		// Magenta properties
+		Property stCharles = new Property("St. Charles Place");
+		Property statesAve = new Property("States Avenue");
+		Property virginiaAve = new Property("Virginia Avenue");
+
+		// Orange properties
+		Property stJames = new Property("St. James Place");
+		Property tennesseeAve = new Property("Tennessee Avenue");
+		Property newYorkAve = new Property("New York Avenue");
+
+		// Red properties
+		Property kentuckyAve = new Property("Kentucky Avenue");
+		Property indianaAve = new Property("Indiana Avenue");
+		Property illinoisAve = new Property("Illinois Avenue");
+
+		// Yellow Properties
+		Property atlanticAve = new Property("Atlantic Avenue");
+		Property ventnorAve = new Property("Ventnor Avenue");
+		Property marvinGard = new Property("Marvin Gardins");
+
+
 		tileList.add(new Property("Mediterranean"));
 		tileList.add(new Community());
 		tileList.add(new Property("Baltic Avenue"));	
-
 		tileList.add(new TaxTile("Income Tax", 200));
 		tileList.add(new Railroad("Reading")); // Railroads automatically add Railroad to the end
-			
-		// Light blue properties
 		tileList.add(new Property("Oriental Avenue"));		
 		tileList.add(new Chance());	
 		tileList.add(new Property("Vermont Avenue"));
@@ -43,27 +69,22 @@ public class Board {
 
 		tileList.add(new Jail());
 			
-		// Magenta properties
 		tileList.add(new Property("St. Charles Place"));
 		tileList.add(new Utility("Electric company"));			
 		tileList.add(new Property("Static Avenue"));			
 		tileList.add(new Property("Virginia Avenue"));
-
 		tileList.add(new Railroad("Pensylvannia"));
-			
-		// Orange properties
 		tileList.add(new Property("St. James Place"));	
 		tileList.add(new Community());
 		tileList.add(new Property("Tennessee Avenue"));			
 		tileList.add(new Property("New York Avenue"));
+
 		tileList.add(new FreeParking());
 			
-		// Red properties
 		tileList.add(new Property("Kentucky Avenue"));		
 		tileList.add(new Chance());	
 		tileList.add(new Property("Indiana Avenue"));			
 		tileList.add(new Property("Illinois Avenue"));
-
 		tileList.add(new Railroad("B&O"));
 			
 		// Yellow properties
@@ -139,5 +160,77 @@ public class Board {
 	// for doing the action of the card and returns the action
 	public int getAction() {
 		return action;
+	}
+
+	public ArrayList<Integer> getRailroads() {
+		return railroads;
+	}
+
+	public void setRailroads(ArrayList<Integer> railroads) {
+		this.railroads = railroads;
+	}
+
+	public ArrayList<Integer> getBrown() {
+		return brown;
+	}
+
+	public void setBrown(ArrayList<Integer> brown) {
+		this.brown = brown;
+	}
+
+	public ArrayList<Integer> getLightBlue() {
+		return lightBlue;
+	}
+
+	public void setLightBlue(ArrayList<Integer> lightBlue) {
+		this.lightBlue = lightBlue;
+	}
+
+	public ArrayList<Integer> getMagenta() {
+		return magenta;
+	}
+
+	public void setMagenta(ArrayList<Integer> magenta) {
+		this.magenta = magenta;
+	}
+
+	public ArrayList<Integer> getOrange() {
+		return orange;
+	}
+
+	public void setOrange(ArrayList<Integer> orange) {
+		this.orange = orange;
+	}
+
+	public ArrayList<Integer> getRed() {
+		return red;
+	}
+
+	public void setRed(ArrayList<Integer> red) {
+		this.red = red;
+	}
+
+	public ArrayList<Integer> getYellow() {
+		return yellow;
+	}
+
+	public void setYellow(ArrayList<Integer> yellow) {
+		this.yellow = yellow;
+	}
+
+	public ArrayList<Integer> getGreen() {
+		return green;
+	}
+
+	public void setGreen(ArrayList<Integer> green) {
+		this.green = green;
+	}
+
+	public ArrayList<Integer> getDarkBlue() {
+		return darkBlue;
+	}
+
+	public void setDarkBlue(ArrayList<Integer> darkBlue) {
+		this.darkBlue = darkBlue;
 	}
 }
