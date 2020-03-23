@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Game {
@@ -12,13 +13,18 @@ public class Game {
 		board.initChanceDeck();
 		board.initChestDeck();
 		playerList.clear();
+
+		Scanner in = new Scanner(System.in);
+
 		for(int i = 0; i < playerCount; i++) {
 			playerList.add(new Player(i, 0));
 		}
 
-		while(true){
-			turn(board);
+		while(playerList.size() > 1){
+			turn(board, in);
 		}
+
+		in.close();
 	}
 	
 // Turns ------------------------------------------------------
@@ -27,8 +33,8 @@ public class Game {
 // TODO: Finish actions for Railroad tiles
 // TODO: Add trading (?)
 // TODO: Add actions for if player is jailed
-	public void turn(Board board) {
-		ArrayList<Integer> validActions = new ArrayList<Integer>();
+	public void turn(Board board, Scanner in) {
+		HashMap<Integer, String> validActions = new HashMap<Integer, String>();
 		int counter = 0;
 
 		// Get current player
@@ -44,7 +50,8 @@ public class Game {
 		counter += doubles ? 1:0;
 
 		System.out.println("Rolled a " + (dice[0] + dice[1]) + "! (" + dice[0] + " and " + dice[1] + ")");
-		if(doubles) System.out.println("Doubles!");;
+		if(doubles) System.out.println("Doubles!");
+		in.nextLine();
 
 		// TODO: Add jail position here
 		if(counter == 3){ // If player has rolled a double 3 times
@@ -63,46 +70,84 @@ public class Game {
 		if(curTile instanceof Property){ // If current tile is a property
 			Property tile = (Property) curTile;
 
-			// Print out valid actions
+			// Add valid actions
 			if(tile.getOwner() == -1) { // If property is unowned
-				System.out.println("0: Buy " + tile.getName() + "? $" + tile.getPrice());
-				validActions.add(0);
+				validActions.put(0, "Buy " + tile.getName() + ". $" + tile.getPrice());
 			} else { // If property is owned
 				if(tile.getOwner() != player.getTurnNum()) { // If player does not own property
 					doAction(-1, player, tile); // Give money to owner of property
-				} else { // If player does own peoperty
-					if(tile.getHouses() != 0 && tile.getHotels() == 0){
-						System.out.println("1: Mortgage Property");
-						validActions.add(1);
-					}
-					if(tile.getHouses() != 0){
-						System.out.println("2: Sell Houses");
-						validActions.add(2);
-					}
-					if(tile.getHotels() != 0){
-						System.out.println("3: Sell Hotels");
-						validActions.add(3);
-					}
+				}
+			}
+			if(player.getProperties().size() >= 0){ // If player owns a property
+				if(tile.getHouses() != 0 && tile.getHotels() == 0){
+					validActions.put(1, "Mortgage Property");
+				}
+				if(tile.getHouses() != 0){
+					validActions.put(2, "Sell Houses");
+				}
+				if(tile.getHotels() != 0){
+					validActions.put(3, "Sell Hotels");
 				}
 			}
 
-			int input = checkInput(validActions);
-			doAction(input, player, tile);
+			// Print out valid actions
+			for (int i : validActions.keySet()) {
+				System.out.println(i + ": " + validActions.get(i));
+			}
+
+			// Check for player input if there are valid actions to do
+			if(validActions.size() > 0){
+				int input = checkInput(validActions, in);
+				doAction(input, player, tile);
+			}
+			
 		}
 
 		if(curTile instanceof Railroad){ // If current tile is a railroad
 			Railroad tile = (Railroad) curTile;
 
-			// Print out valid actions
+			// Adds valid actions
 			if(tile.getOwner() == -1) { // If property is unowned
-				System.out.println("0: Buy " + tile.getName() + "? $" + tile.getPrice());
-				validActions.add(0);
+				validActions.put(0, "Buy " + tile.getName() + ". $" + tile.getPrice());
 			} else { // If property is owned
 				if(tile.getOwner() != player.getTurnNum()) { // If player does not own property
 					doAction(-1, player, tile); // Give money to owner of property
-				} else { // If player does own peoperty
-					
 				}
+			}
+
+			// Print out valid actions
+			for (int i : validActions.keySet()) {
+				System.out.println(i + ": " + validActions.get(i));
+			}
+
+			// Check for player input if there are valid actions to do
+			if(validActions.size() > 0){
+				int input = checkInput(validActions, in);
+				doAction(input, player, tile);
+			}
+		}
+
+		if(curTile instanceof Utility){ // If current tile is a Utility
+			Utility tile = (Utility) curTile;
+
+			// Adds valid actions
+			if(tile.getOwner() == -1) { // If property is unowned
+				validActions.put(0, "Buy " + tile.getName() + ". $" + tile.getPrice());
+			} else { // If property is owned
+				if(tile.getOwner() != player.getTurnNum()) { // If player does not own property
+					doAction(-1, player, tile, dice); // Give money to owner of property
+				}
+			}
+
+			// Print out valid actions
+			for (int i : validActions.keySet()) {
+				System.out.println(i + ": " + validActions.get(i));
+			}
+
+			// Check for player input if there are valid actions to do
+			if(validActions.size() > 0){
+				int input = checkInput(validActions, in);
+				doAction(input, player, tile, dice);
 			}
 		}
 
@@ -120,34 +165,30 @@ public class Game {
 			Chance chance = (Chance) curTile;
 			doAction(player, chance);
 		}
+		in.nextLine();
 		
 		} while(doubles);
-		
+
 		// Increment turn
-		if(++turnNo % playerList.size() == 0) turnNo--;
+		if(++turnNo % playerList.size() == 0) turnNo = 0;
 	}
 
-	private int checkInput(ArrayList<Integer> validActions) {
-		Scanner in = new Scanner(System.in);
+	private int checkInput(HashMap<Integer, String> validActions, Scanner in) {
 		boolean valid = false;
 		int input = -1;
 
 		while (!valid) {
-			System.out.println("Type an action: ");
-			String userInput = in.nextLine();
+			System.out.print("Type an action: ");
 			try {
-				input = Integer.parseInt(userInput);
-			} catch (Exception e) {
+				input = Integer.parseInt(in.nextLine());
+			} catch (NumberFormatException e) {
 				continue;
 			}
-			if (validActions.contains(input)) {
-				valid = true;
-			} else {
-				valid = false;
+			
+			for (int i : validActions.keySet()) {
+				if(i == input) valid = true;
 			}
 		}
-
-		in.close();
 		return input;
 	}
 
@@ -164,9 +205,12 @@ public class Game {
 // - Card
 // 		- TODO: Proper actions for each card
 // 		- TODO: Adding print statemets to clarify to player
+// - Utility
+// 		- TODO: Add logic for player owning both utilities
 	// Tax tile actions
 	private void doAction(Player player, TaxTile tile){
 		player.changeMoney(-tile.getTax()); // Only one action for taxes
+		System.out.println("Lost $" + tile.getTax() + "! Currently at " + player.getMoney());
 	}
 
 	// Community chest actions
@@ -201,6 +245,32 @@ public class Game {
 				if(player.getTurnNum() != property.getOwner()) {
 					player.changeMoney(property.getPenalty());
 					playerList.get(property.getOwner()).changeMoney(property.getPenalty());
+				}
+				break;
+		}
+	}
+
+// Utility actions -------------------------------------------------------
+	private void doAction(int action, Player player, Utility property, int[] dice) {
+		switch (action) {
+			case 0: // Buy property
+				if (property.getOwner() == -1 && player.getMoney() >= property.getPrice()) { // If unowned and player has enough money
+					player.changeMoney(-property.getPrice()); // Remove money from player
+					property.setOwner(player.getTurnNum()); // Set property owner to current player
+					System.out.println("Bought " + property.getName() + "!");
+					System.out.println("Currently have $" + player.getMoney() + ".");
+					System.out.println("");
+				} else {
+					System.out.println("Property already has an owner!"); // Should not happen
+				}
+				break;
+			case 1: // Mortgage property
+
+			case -1: // Change owner of money
+				if (player.getTurnNum() != property.getOwner()) {
+					int penalty = (dice[0] + dice[1]) * 4;
+					player.changeMoney(-penalty);
+					playerList.get(property.getOwner()).changeMoney(penalty);
 				}
 				break;
 		}

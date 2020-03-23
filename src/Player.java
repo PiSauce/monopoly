@@ -77,4 +77,12 @@ public class Player {
 	public void setJailed(boolean jailed) {
 		this.jailed = jailed;
 	}
+
+	public ArrayList<Integer> getProperties() {
+		return properties;
+	}
+
+	public void setProperties(ArrayList<Integer> properties) {
+		this.properties = properties;
+	}
 }
