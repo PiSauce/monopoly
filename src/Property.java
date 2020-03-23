@@ -6,12 +6,14 @@ public class Property extends Tile{
 	private int price; // cost of property
 	private int penalty; // rent to pay
 	private int owner = -1;
+	private boolean mortgaged;
 
 	public Property(String name){
 		super(name);
 		this.price = 1;
 		this.penalty = 1;
 		this.houses = this.hotels = 0;
+		setMortgaged(false);
 	}
 
 	public Property(String name, int price, int penalty) {
@@ -19,6 +21,7 @@ public class Property extends Tile{
 		this.price = price;
 		this.penalty = penalty;
 		this.houses = this.hotels = 0;
+		setMortgaged(false);
 	}
 
 	public void setHotels(int hotels) {
@@ -66,5 +69,13 @@ public class Property extends Tile{
 
 	public int getHotels() {
 		return hotels;
+	}
+
+	public boolean isMortgaged() {
+		return mortgaged;
+	}
+
+	public void setMortgaged(boolean mortgaged) {
+		this.mortgaged = mortgaged;
 	}
 }
