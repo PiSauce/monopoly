@@ -6,14 +6,24 @@ import java.util.ArrayList;
 
 public class Board {
 	ArrayList<Tile> tileList = new ArrayList<Tile>();
-	ArrayList<Railroad> railroads = new ArrayList<Railroad>();
+
+	// Creating tile groupings
+	ArrayList<Integer> railroads = new ArrayList<Integer>();
+	ArrayList<Integer> brown = new ArrayList<Integer>();
+	ArrayList<Integer> lightBlue = new ArrayList<Integer>();
+	ArrayList<Integer> magenta = new ArrayList<Integer>();
+	ArrayList<Integer> orange = new ArrayList<Integer>();
+	ArrayList<Integer> red = new ArrayList<Integer>();
+	ArrayList<Integer> yellow = new ArrayList<Integer>();
+	ArrayList<Integer> green = new ArrayList<Integer>();
+	ArrayList<Integer> darkBlue = new ArrayList<Integer>();
+
 	// initializing the two types of cards in the game
 	Deck chanceDeck;
 	Deck chestDeck;
 	int action;
 
 	// TODO: Add prices and rent to each property
-	// TODO: Maybe double check names of each tile
 	public void initTiles() {
 		tileList.add(new Go());
 
