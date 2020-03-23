@@ -241,7 +241,7 @@ public class Game {
 			case 1: // Mortgage property
 				
 			case -1: // Change owner of money
-				if(player.getTurnNum() != property.getOwner()) {
+				if(player.getTurnNum() != property.getOwner() && !property.isMortgaged()) {
 					int owned = 0;
 					Player owner = playerList.get(property.getOwner());
 					for (Integer properties : owner.getProperties()){
@@ -274,7 +274,7 @@ public class Game {
 			case 1: // Mortgage property
 
 			case -1: // Change owner of money
-				if (player.getTurnNum() != property.getOwner()) {
+				if (player.getTurnNum() != property.getOwner() && !property.isMortgaged()) {
 					int penalty = (dice[0] + dice[1]) * 4;
 					player.changeMoney(-penalty);
 					playerList.get(property.getOwner()).changeMoney(penalty);
@@ -304,7 +304,7 @@ public class Game {
 			case 3: // Sell hotels
 				break;
 			case -1: // Change owner of money
-				if(player.getTurnNum() != property.getOwner()) {
+				if(player.getTurnNum() != property.getOwner() && !property.isMortgaged()) {
 					player.changeMoney(property.getPenalty());
 					playerList.get(property.getOwner()).changeMoney(property.getPenalty());
 				}
