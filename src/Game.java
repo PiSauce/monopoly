@@ -266,7 +266,6 @@ public class Game {
 					property.setOwner(player.getTurnNum()); // Set property owner to current player
 					System.out.println("Bought " + property.getName() + "!");
 					System.out.println("Currently have $" + player.getMoney() + ".");
-					System.out.println("");
 				} else {
 					System.out.println("Property already has an owner!"); // Should not happen
 				}
