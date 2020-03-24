@@ -2,19 +2,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+//game class
 public class Game {
+	
+	//instance variables
 	private int turnNo = 0;
 	private Board board;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private HashMap<Integer, String> validActions = new HashMap<Integer, String>();
 	
+	//creates new game 
+	//parameter is the number of players in the game
 	public void newGame(int playerCount) {
 		board = new Board();
 		board.initTiles();
 		board.initChanceDeck();
 		board.initChestDeck();
 		playerList.clear();
-
+		
+		//scanner to get input of the players name
 		Scanner in = new Scanner(System.in);
 
 		for(int i = 0; i < playerCount; i++) {
@@ -177,7 +183,8 @@ public class Game {
 		// Increment turn
 		if(++turnNo % playerList.size() == 0) turnNo = 0;
 	}
-
+	
+	//checks input from scanner to check for valid inputs
 	private int checkInput(HashMap<Integer, String> validActions, Scanner in) {
 		boolean valid = false;
 		int input = -1;
