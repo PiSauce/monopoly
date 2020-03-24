@@ -1,4 +1,4 @@
-//importing the necessary libraries
+//importing the necessary java fx libraries
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -36,7 +36,7 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
 
-//monopoly class
+//monopoly app class
 public class MonopolyApp extends Application {
 	@Override
 	public void start(Stage theStage) {
@@ -44,13 +44,20 @@ public class MonopolyApp extends Application {
 		int turn = 0;
 		ArrayList<Player> players = new ArrayList<Player>();
 		ArrayList<Landmark> route = new ArrayList<Landmark>();
-		
+		//creating the welcome label
 		Label welcomeLabel = new Label("WELCOME TO MONOPOLY!");
+		
+		//creating the start the game button
 		Button startTheGame = new Button("Start The Game");
+		//adding the 'add a player button'
 		Button addAPlayer = new Button("Add A Player");
+		
+		//setting the font type and size for each button 
 		welcomeLabel.setFont(new Font("Arial", 50));
 		startTheGame.setFont(new Font("Arial", 30));
 		addAPlayer.setFont(new Font("Arial", 30));
+		
+		//starting the game
 		startTheGame.setDisable(true);
 		VBox vbox = new VBox(30);
 		vbox.getChildren().addAll(welcomeLabel, startTheGame, addAPlayer);
@@ -72,6 +79,7 @@ public class MonopolyApp extends Application {
 			addAPlayerPanel.getColumnConstraints().add(columnConstraints);
 		}
 		ToggleGroup group = new ToggleGroup();
+		//adds the images for the icons of the game, captain america, green lantern, hulk, etc
 		String[] images = {"Batman", "Captain America", "Flash", "Green Lantern", "Hulk", "Iron Man", "Robocop", "Spider-man"};
 		for(int j = 0; j < 8; j++) {
 			Image tempImage = new Image("Tokens/" + images[j] + ".jpg");
@@ -84,6 +92,7 @@ public class MonopolyApp extends Application {
 			tempButton.setToggleGroup(group);
 			addAPlayerPanel.add(tempButton, j%4, j/4);
 		}
+		//prompts for username after player token has been selected
 		Label usernameLabel = new Label("Please select a token and enter your username:");
 		usernameLabel.setFont(new Font("Arial", 20));
 		TextField usernameField = new TextField();
