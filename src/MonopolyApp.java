@@ -1,3 +1,5 @@
+//importing the necessary libraries
+
 import java.util.Random;
 import javafx.application.Application;
 import javafx.scene.layout.GridPane;
@@ -24,28 +26,36 @@ import javafx.scene.text.Font;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+//monopoly app class
 public class MonopolyApp extends Application {
 	
+	//creates the primary stage
 	@Override
 	public void start (Stage primaryStage) {
+		//constants
 		final int rowCounts = 11;
 		final int columnCounts = 11;
 		final int positionCounts = 40;
 		final double tileHeightPercent = 14.0;
 		final double tileWidthPercent = 8.0;
 		
+		//creating a new grid panel
 		GridPane board = new GridPane();
 		
+		//creating constrctions for the rows and columns
 		RowConstraints borderRows = new RowConstraints();
 		RowConstraints inbetweenRows = new RowConstraints();
 		ColumnConstraints borderColumns = new ColumnConstraints();
 		ColumnConstraints inbetweenColumns = new ColumnConstraints();
 		
+		//setting the tile width and height
 		borderRows.setPercentHeight(tileHeightPercent);
 		inbetweenRows.setPercentHeight(tileWidthPercent);
 		borderColumns.setPercentWidth(tileHeightPercent);
 		inbetweenColumns.setPercentWidth(tileWidthPercent);
 		
+		
+	//for loops for rows and columns	
         for (int i = 0; i < rowCounts; i++) {
         	if (i == 0 || i == rowCounts - 1) {
         		board.getRowConstraints().add(borderRows);
@@ -54,6 +64,7 @@ public class MonopolyApp extends Application {
         		board.getRowConstraints().add(inbetweenRows);
         	}
         }
+	//for loop for grabbing the columns
         for (int j = 0; j < columnCounts; j++) {
         	if (j == 0 || j == columnCounts - 1) {
         		board.getColumnConstraints().add(borderColumns);
@@ -63,15 +74,20 @@ public class MonopolyApp extends Application {
         	}
         }
         
+	//creating a new center stackpane
         StackPane center = new StackPane();
+	//setting background as white
         center.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         center.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+	//creating the monopolt label and setting font style and size
         Label logo = new Label("MONOPOLY");
         logo.setFont(new Font("Arial", 60));
         
+	//adding logo to center
         center.getChildren().add(logo);
         board.add(center, 1, 1, columnCounts-2, rowCounts-2);
         
+	//adding specific tiles in specific indexes
         for (int index = 0; index < positionCounts; index++) {
         	if (index >= 0 && index <= 9) {
         		board.add(addTile(index), 10 - index, 10);
@@ -87,17 +103,21 @@ public class MonopolyApp extends Application {
         	}
         } 
         
+	//creating the button roll and attaching labels
         Button rollDice = new Button("Roll the dice");
         Label dice1 = new Label("6");
         Label dice2 = new Label("6");
+	//setting up font type and font size
         dice1.setFont(new Font("Arial", 20));
         dice2.setFont(new Font("Arial", 20));
         board.add(rollDice, 2, 8, 2, 1);
         board.add(dice1, 2, 7);
         board.add(dice2, 3, 7);
         
+	//adding the roll dice action and setting an event and action handler
         rollDice.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
+		//class that handles a specific action
         	public void handle(ActionEvent e)
         	{
         		Random rand = new Random();
@@ -107,7 +127,7 @@ public class MonopolyApp extends Application {
         });
         
         board.setGridLinesVisible(false);
-        
+        //creating a brand new monopoly board
         Scene scene = new Scene(board);
         primaryStage.setHeight(700);
         primaryStage.setWidth(700);
@@ -115,11 +135,14 @@ public class MonopolyApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 	}
-	
+	//adds tile based on index
 	public StackPane addTile(int index) {
 		StackPane tempPane = new StackPane();
 		tempPane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		Label tempLabel = new Label();
+		//adds the tiles based on cases, adds properties based on color together or adds board pieces that share very similar properties
+		//such as chest and community chest
+		//cases range from 0-39 and adds labels based on the tempLabel accordingly
 		
 		switch(index) {
 			case 0:
@@ -286,11 +309,13 @@ public class MonopolyApp extends Application {
 				break;
 		}
 		
+		//setting the new font and font size
 		tempLabel.setFont(new Font("Arial", 10));
 		tempPane.getChildren().add(tempLabel);
 		return tempPane;
 	}
 	
+	//main class to run application
 	public static void main(String[] args) {
         Application.launch(args);
     }
