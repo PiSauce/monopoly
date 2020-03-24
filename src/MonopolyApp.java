@@ -1,3 +1,5 @@
+//importing the necessary libraries
+
 import java.util.ArrayList;
 import java.util.Random;
 import javafx.application.Application;
@@ -33,6 +35,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
+
+//monopoly class
 public class MonopolyApp extends Application {
 	@Override
 	public void start(Stage theStage) {
@@ -191,7 +195,7 @@ public class MonopolyApp extends Application {
 		    	confirm.setDisable(false);
 		    }
 		});
-		
+		//confirms set on action and creates an event handler
 		confirm.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent event) {
@@ -228,7 +232,7 @@ public class MonopolyApp extends Application {
 		    }
 		});
 	}
-	
+	//sets orietation of a player
 	public void setOrientation(Player aPlayer, int aID) {
 		switch(aID) {
 		case 0: 
@@ -267,7 +271,8 @@ public class MonopolyApp extends Application {
 			break;
 	}
 	}
-
+	
+	//gets the index of a landmark (placement on board) 
 	public Landmark getLandmark(int anIndex) {
 		Landmark tempLandmark = new Landmark("", Color.GRAY, new ImageView(new Image("Logo/Logo.jpg")));
 		switch(anIndex) {
@@ -396,7 +401,7 @@ public class MonopolyApp extends Application {
 		}
 		return tempLandmark;
 	}
-
+	//index to subscript
 	public int[] indexToSubscript(int anIndex) {
 		if(anIndex >= 0 && anIndex <= 9) {
 			return new int[] {10 - anIndex, 10};
@@ -412,13 +417,14 @@ public class MonopolyApp extends Application {
 		}
 	}
 
+	//rolls dice and provides an image view of the roll
 	public void rollDice(ImageView firstDice, ImageView secondDice, int firstNumber, int secondNumber, Player aPlayer, int turn) {
 		firstDice.setImage(new Image("Dice/" + firstNumber + ".jpg"));
 		secondDice.setImage(new Image("Dice/" + secondNumber + ".jpg"));
 		aPlayer.moveForward(firstNumber + secondNumber);
 		turn++;
 	}
-	
+	//main function
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
