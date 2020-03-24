@@ -1,5 +1,6 @@
-public class Card {
+public class Card { //card class
 	
+	//instance variables
 	private String description;
 	private int label;
 	private int ID;
@@ -9,7 +10,6 @@ public class Card {
 		this.ID = (int)(Math.random()*31) + 1; // Sets to a random ID if none specified
 		setup();
 	}
-	
 	public Card(int ID) {
 		this.ID = ID;
 		setup();
@@ -18,6 +18,7 @@ public class Card {
 	// Sets a description for the card.
 	// 0 - 15 	-> Chance card IDs
 	// 16 - 31 	-> Community chest card IDs
+	// cases represent the outcome of the cards, (ex. case 10 asks a player to pay a tax)
 	private void setup() {
 		switch(ID) {
 			case 0:
