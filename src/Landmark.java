@@ -6,6 +6,8 @@ public class Landmark {
 	private String description;
 	private Color color;
 	private ImageView landmark;
+	private int ownerID = -1;
+	private int groupOwnerID = -1;
 	
 	public Landmark(String aDescription, Color aColor, ImageView aLandmark) {
 		setDescription(aDescription);
@@ -32,11 +34,35 @@ public class Landmark {
 	public void setLandmark(ImageView aLandmark) {
 		landmark = aLandmark;
 		landmark.setPreserveRatio(false);
-		landmark.setFitWidth(250);
-		landmark.setFitHeight(500);
+		landmark.setFitWidth(300);
+		landmark.setFitHeight(300);
 	}
 	
 	public ImageView getLandmark() {
 		return landmark;
+	}
+	
+	public int getPrice() {
+		return -1;
+	}
+	
+	public boolean getMortgaged() {
+		return false;
+	}
+	
+	public void setOwnerID(int anOwnerID) {
+		ownerID = anOwnerID;
+	}
+	
+	public int getOwnerID() {
+		return ownerID;
+	}
+	
+	public void setGroupOwnerID(int aLocation, int aGroupOwnerID) {
+		groupOwnerID = aGroupOwnerID;
+	}
+	
+	public int[] getGroupLocations(int aLocation) {
+		return new int[] {-1};
 	}
 }
