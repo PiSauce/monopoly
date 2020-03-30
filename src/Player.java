@@ -6,9 +6,12 @@ public class Player {
 	private String username;
 	private int id;
 	private ImageView token;
-	private int money = 1500;
+	private static int currentPlayerIndex = 0;
+	private int inJailNumber = -1;
+	private boolean justOutOfJail = false;
 	private int position = 0;
-	private ArrayList<Landmark> properties = new ArrayList<Landmark>();
+	private int money = 1500;
+	private ArrayList<Integer> propertyIDs = new ArrayList<Integer>();
 	
 	public Player(String aUsername, int aID, ImageView aToken) {
 		setUsername(aUsername);
@@ -43,6 +46,50 @@ public class Player {
 		return token;
 	}
 	
+	public void setNextPlayerIndex(int aPlayersSize) {
+		currentPlayerIndex = ++currentPlayerIndex % aPlayersSize;
+	}
+	
+	public int getCurrentPlayerIndex() {
+		return currentPlayerIndex;
+	}
+	
+	public void setInJailNumber() {
+		inJailNumber = -1;
+	}
+	
+	public void addInJailNumber() {
+		inJailNumber++;
+	}
+	
+	public int getInJailNumber() {
+		return inJailNumber;
+	}
+	
+	public void setJustOutOfJail(boolean whetherJustOutOfJail) {
+		justOutOfJail = whetherJustOutOfJail;
+	}
+	
+	public boolean getJustOutOfJail() {
+		return justOutOfJail;
+	}
+	
+	public void setPosition(int aPosition) {
+		position = aPosition;
+	}
+	
+	public void moveForward(int steps) {
+		position = (position + steps) % 40;
+	}
+	
+	public void moveBackward(int steps) {
+		position = (position - steps) % 40;
+	}
+	
+	public int getPosition() {
+		return position;
+	}
+	
 	public void addMoney(int someMoney) {
 		money += someMoney;
 	}
@@ -55,35 +102,16 @@ public class Player {
 		return money;
 	}
 	
-	public void setPosition(int aPosition) {
-		position = aPosition;
+	public void addPropertyID(int aPropertyID) {
+		propertyIDs.add(aPropertyID);
 	}
 	
-	public void moveForward(int steps) {
-		position += steps;
+	public void removePropertyID(int aPropertyID) {
+		propertyIDs.remove(aPropertyID);
 	}
 	
-	public void moveBackward(int steps) {
-		position -= steps;
-	}
-	
-	public int getPosition() {
-		return position;
-	}
-	
-	public void addProperty(Landmark aProperty) {
-		properties.add(aProperty);
-	}
-	
-	public void removeProperty(Landmark aProperty) {
-		properties.remove(aProperty);
-	}
-	
-	public ArrayList<String> getPropertyDescriptions() {
-		ArrayList<String> propertyDescriptions = new ArrayList<String>();
-		for(Landmark aProperty: properties) {
-			propertyDescriptions.add(aProperty.getDescription());
-		}
-		return propertyDescriptions;
+	public ArrayList<Integer> getPropertyIDs() {
+		ArrayList<Integer> tempPropertyIDs = new ArrayList<>(propertyIDs);
+		return tempPropertyIDs;
 	}
 }
