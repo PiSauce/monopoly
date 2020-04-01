@@ -1,15 +1,17 @@
 public class Card { //card class
 	
 	//instance variables
-	private String description;
-	private int label;
-	private int ID;
+	private String description; 	//description of the card drawn
+	private int label;	//label as in "name" of the card
+	private int ID;		//each card is assigned an ID, where each ID is an event to occur in game
 	
 	// Constructors
 	public Card() {
 		this.ID = (int)(Math.random()*31) + 1; // Sets to a random ID if none specified
 		setup();
 	}
+	// Card class
+	//parameters (int ID) - grabs the ID "case" of the card and sets it as most current ID
 	public Card(int ID) {
 		this.ID = ID;
 		setup();
@@ -18,7 +20,7 @@ public class Card { //card class
 	// Sets a description for the card.
 	// 0 - 15 	-> Chance card IDs
 	// 16 - 31 	-> Community chest card IDs
-	// cases represent the outcome of the cards, (ex. case 10 asks a player to pay a tax)
+	// cases of the ID represent the outcome of the cards, (ex. case 10 asks a player to pay a tax)
 	private void setup() {
 		switch(ID) {
 			case 0:
@@ -122,7 +124,7 @@ public class Card { //card class
 		}
 	}
 	
-	// Getters and Setters
+	// Getters and Setters for the description, labels and ID
 	public void setDescription(String s) {
 		description = s;
 	}
