@@ -1,5 +1,6 @@
+// chance class 
 public class Chance extends Tile {
-    public Chance(){
-        super("Chance");
+    public Chance(){ //constructor
+        super("Chance"); //calls super from parent class
     }
 }
