@@ -84,7 +84,8 @@ public class Board {
 		Chance chance = new Chance();
 		Community chest = new Community();
 
-		// Creating tile groupings
+		// Adds the properties by color in accordance with their position on the board
+		// adds color + placement of piece to a list of their respective colors
 		brown.add(1);
 		brown.add(3);
 		railroads.add(5);
@@ -114,7 +115,10 @@ public class Board {
 		darkBlue.add(37);
 		darkBlue.add(39);
 
-		// Add tiles to the board
+		// tileList is the list of tiles of the board where each tile is representative of a place on the board
+		// adds each tile is chronological order beginning of the board "go"
+		//this list includes: properties, taxes, railroads, chance, community chest
+		
 		tileList.add(new Go());
 
 		tileList.add(mediterranean);
@@ -170,6 +174,7 @@ public class Board {
 		for (int i = 0; i < 16; i++) {
 			chanceDeck.addCard(new Card(i));
 		}
+		//shuffled to make the order random
 		chanceDeck.shuffle();
 	}
 
@@ -179,6 +184,7 @@ public class Board {
 		for (int i = 0; i < 16; i++) {
 			chestDeck.addCard(new Card(i + 16));
 		}
+		//makes cards random
 		chestDeck.shuffle();
 	}
 
@@ -223,7 +229,11 @@ public class Board {
 	public void setRailroads(ArrayList<Integer> railroads) {
 		this.railroads = railroads;
 	}
-
+	
+	//*creating arraylist of all properties by color and adds the colored property based on an-
+	//index position on the board
+	//create setters and getters for the properties
+	
 	public ArrayList<Integer> getBrown() {
 		return brown;
 	}
