@@ -1,90 +1,118 @@
 import java.util.ArrayList;
-//player class
+import javafx.scene.image.ImageView;
+
 public class Player {
-	//instance variable
-	private int money;
-	private int turnNum;
-	private int piece;
-	private int position;
-	private boolean jailed;
-	private ArrayList<Integer> properties = new ArrayList<Integer>();
-	private ArrayList<Card> cards = new ArrayList<Card>();
 	
-	//constructor
-	public Player(int turnNum, int piece) {
-		this.turnNum = turnNum;
-		this.piece = piece;
-		this.money = 2000; // Default number
-		this.position = 0; // Starting position
-		this.jailed = false;
+	private String username;
+	private int id;
+	private ImageView token;
+	private static int currentPlayerIndex = 0;
+	private int inJailNumber = -1;
+	private boolean justOutOfJail = false;
+	private int position = 0;
+	private int money = 1500;
+	private ArrayList<Integer> propertyIDs = new ArrayList<Integer>();
+	
+	public Player(String aUsername, int aID, ImageView aToken) {
+		setUsername(aUsername);
+		setID(aID);
+		setToken(aToken);		
 	}
-	//getter for players money
-	public int getMoney() {
-		return money;
+	
+	public void setUsername(String aUsername) {
+		username = aUsername;
 	}
-	//sets money for the player
-	public void setMoney(int m) {
-		this.money = m;
+	
+	public String getUsername() {
+		return username;
 	}
-	//changes money of a player (increases or decreases)
-	public void changeMoney(int m) {
-		this.money += m;
+	
+	public void setID(int aID) {
+		id = aID;
 	}
-	//rolls dice and returns dice after roll
-	public int[] roll() {
-		int[] dice = {(int)Math.round(Math.random()*5) + 1, (int)Math.round(Math.random()*5) + 1};
-		return dice;
+	
+	public int getID() {
+		return id;
 	}
-	//returns position of player on board
+	
+	public void setToken(ImageView aToken) {
+		token = aToken;
+		token.setPreserveRatio(false);
+		token.setFitWidth(30);
+		token.setFitHeight(30);
+	}
+	
+	public ImageView getToken() {
+		return token;
+	}
+	
+	public void setNextPlayerIndex(int aPlayersSize) {
+		currentPlayerIndex = ++currentPlayerIndex % aPlayersSize;
+	}
+	
+	public int getCurrentPlayerIndex() {
+		return currentPlayerIndex;
+	}
+	
+	public void setInJailNumber() {
+		inJailNumber = -1;
+	}
+	
+	public void addInJailNumber() {
+		inJailNumber++;
+	}
+	
+	public int getInJailNumber() {
+		return inJailNumber;
+	}
+	
+	public void setJustOutOfJail(boolean whetherJustOutOfJail) {
+		justOutOfJail = whetherJustOutOfJail;
+	}
+	
+	public boolean getJustOutOfJail() {
+		return justOutOfJail;
+	}
+	
+	public void setPosition(int aPosition) {
+		position = aPosition;
+	}
+	
+	public void moveForward(int steps) {
+		position = (position + steps) % 40;
+	}
+	
+	public void moveBackward(int steps) {
+		position = (position - steps) % 40;
+	}
+	
 	public int getPosition() {
 		return position;
 	}
-	//sets position of player on board
-	public void setPosition(int pos) {
-		this.position = pos;
+	
+	public void addMoney(int someMoney) {
+		money += someMoney;
 	}
 	
-	//moves a player based on position and adds roll to current position
-	public void move(int pos) {
-		this.position += pos;
+	public void reduceMoney(int someMoney) {
+		money -= someMoney;
 	}
 	
-	//adds property to a players property
-	public void addProperty(int prop) {
-		properties.add(prop);
-	}
-	//removes property
-	public void removeProperty(int prop) {
-		properties.remove(prop);
-	}
-	//adds card 
-	public void addCard(Card card) {
-		cards.add(card);
+	public int getMoney() {
+		return money;
 	}
 	
-	//sets player piece
-	public void setPiece(int p) {
-		this.piece = p;
+	public void addPropertyID(int aPropertyID) {
+		propertyIDs.add(aPropertyID);
 	}
 	
-	//gets the turn number of player
-	public int getTurnNum() {
-		return turnNum;
+	public void removePropertyID(int aPropertyID) {
+		propertyIDs.remove(aPropertyID);
 	}
 	
-	//gets the piece of the player
-	public int getPiece(){
-		return piece;
-	}
-	
-	//checks if a player is jailed or not (true or false)
-	public boolean isJailed() {
-		return jailed;
-	}
-
-	//if isJailed() is true then player is jailed
-	public void setJailed(boolean jailed) {
-		this.jailed = jailed;
+	public ArrayList<Integer> getPropertyIDs() {
+		ArrayList<Integer> tempPropertyIDs = new ArrayList<>(propertyIDs);
+		return tempPropertyIDs;
 	}
 
 	//returns an arraylist of properties
