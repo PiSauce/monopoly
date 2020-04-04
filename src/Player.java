@@ -114,4 +114,14 @@ public class Player {
 		ArrayList<Integer> tempPropertyIDs = new ArrayList<>(propertyIDs);
 		return tempPropertyIDs;
 	}
+
+	//returns an arraylist of properties
+	public ArrayList<Integer> getProperties() {
+		return properties;
+	}
+	
+	//sets arraylist of properties
+	public void setProperties(ArrayList<Integer> properties) {
+		this.properties = properties;
+	}
 }

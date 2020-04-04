@@ -9,27 +9,41 @@ To be able to play this game a **Java JDK 8 System** is required. <a href  = "ht
 1) Go to the Code Repository under the <a href = "https://github.com/PiSauce/monopoly"> master branch </a> </br>
 2) Download files from master branch as a ZIP file under **downloads** file</br>
 3) Extract files and check you have everything shown on the GitHub file</br>
-4) Open computer's terminal or eclipse</br>
+> \Users\Username\Downloads\Monopoly-master </br>
+4) Open computer's terminal or eclipse to open the game</br>
 
 ### Terminal
 5) open terminal and locate the file </br>
+> Terminal: cd Download\Monopoly-master </br>
 6) Compile: javac **Game.java**</br>
 7) Run: java **Game** </br>
+8) Play Game </br>
 
 ### Eclipse
-5) open eclipse and import the github file </br>
-6) click **Game.java** setting and go **Run As**
-6) press **Run Application**
+4) Enter Eclipse &#8594; Create a **"New Folder"** under the **File** button &#8594; Name it</br>
+5) Import the github file from the **downloads** folder you already downloaded</br>
+> - It can be done by dragging the **Monopoly-master** to the **src** folder inside the eclipse file</br>
+> - Accept making a copy</br>
+> - Game files will be available</br>
+  
+6) Click on **Game.java** options and go to setting &#8594; Press on **Run As**
+7) Press **Run Application**
+8) Play Game </br>
 
 
 
-## Version
+## Versions
 **v1.0** </br>
 - Text Based Version of the Monopoly game</br>
 </br>
 
 **v2.0** </br>
 - GUI Implementation </br>
+</br>
+
+**v3.0** </br>
+- text based version working
+- 
 </br>
 
 ## Made By:

@@ -38,6 +38,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
+//monopoly app class
 public class MonopolyApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
@@ -232,7 +233,6 @@ public class MonopolyApp extends Application {
 		requiredActionVBox.getChildren().addAll(requiredActionMessage, requiredActionLandmark, requiredActionHBox);
 		requiredActionVBox.setAlignment(Pos.CENTER);
 		Scene requiredActionScene = new Scene(requiredActionVBox);
-		
 		Label optionalActionMessage = new Label();
 		optionalActionMessage.setFont(new Font("Arial", 20));
 		optionalActionMessage.setWrapText(true);
@@ -763,6 +763,7 @@ public class MonopolyApp extends Application {
 		return tempArrayList;
 	}
 	
+	//main class to run application
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
