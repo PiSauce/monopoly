@@ -43,7 +43,9 @@ To be able to play this game a **Java JDK 8 System** is required. <a href  = "ht
 
 **v3.0** </br>
 - text based version working
-- 
+- GUI implemented
+- able to choose player
+- properties and cards working
 </br>
 
 ## Made By:
