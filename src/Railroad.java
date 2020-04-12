@@ -1,5 +1,4 @@
 import javafx.scene.paint.Color;
-import javafx.scene.image.ImageView;
 
 public class Railroad extends Landmark {
 	
@@ -10,8 +9,8 @@ public class Railroad extends Landmark {
 	private static int groupOwnerID = -1;
 	private final int[] groupLocations = {5, 15, 25, 35};
 	
-	public Railroad(String aDescription, Color aColor, ImageView aLandmark) {
-		super(aDescription, aColor, aLandmark);
+	public Railroad(String aDescription, Color aColor) {
+		super(aDescription, aColor);
 	}
 	
 	public int getPrice() {
