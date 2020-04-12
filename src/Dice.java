@@ -7,11 +7,13 @@ public class Dice {
 	private int number;
 	private ImageView faceIcon;
 	private static int doubleNumber;
+	private static boolean toBeExtraRolled;
 	
 	public Dice() {
 		setNumber();
 		setFaceIcon();
 		setDoubleNumber();
+		setToBeExtraRolled(false);
 	}
 	
 	public void setNumber() {
@@ -23,7 +25,7 @@ public class Dice {
 	}
 	
 	public void setFaceIcon() {
-		faceIcon = new ImageView(new Image("Dice/" + number + ".jpg"));
+		faceIcon = new ImageView(new Image("Dice/" + getNumber() + ".jpg"));
 		faceIcon.setPreserveRatio(false);
 		faceIcon.setFitWidth(100);
 		faceIcon.setFitHeight(100);
@@ -43,5 +45,13 @@ public class Dice {
 	
 	public int getDoubleNumber() {
 		return doubleNumber;
+	}
+	
+	public void setToBeExtraRolled(boolean whetherToBeExtraRolled) {
+		toBeExtraRolled = whetherToBeExtraRolled;
+	}
+	
+	public boolean getToBeExtraRolled() {
+		return toBeExtraRolled;
 	}
 }
