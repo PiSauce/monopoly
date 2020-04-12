@@ -1,5 +1,4 @@
 import javafx.scene.paint.Color;
-import javafx.scene.image.ImageView;
 
 public class ColorGroup extends Landmark {
 	
@@ -16,8 +15,8 @@ public class ColorGroup extends Landmark {
 	private static int[] groupOwnerIDs = {-1, -1, -1, -1, -1, -1, -1, -1};
 	private final int[][] groupLocations = {{1, 3}, {6, 8, 9}, {11, 13, 14}, {16, 18, 19}, {21, 23, 24}, {26, 27, 29}, {31, 32, 34}, {37, 39}};
 	
-	public ColorGroup(String aDescription, Color aColor, ImageView aLandmark, int aPrice, int someBuildingCost, int[] someRents) {
-		super(aDescription, aColor, aLandmark);
+	public ColorGroup(String aDescription, Color aColor, int aPrice, int someBuildingCost, int[] someRents) {
+		super(aDescription, aColor);
 		setPrice(aPrice);
 		setBuildingCost(someBuildingCost);
 		setRents(someRents);
