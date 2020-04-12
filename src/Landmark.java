@@ -1,18 +1,15 @@
 import javafx.scene.paint.Color;
-import javafx.scene.image.ImageView;
 
 public class Landmark {
 	
 	private String description;
 	private Color color;
-	private ImageView landmark;
 	private int ownerID = -1;
 	private int groupOwnerID = -1;
 	
-	public Landmark(String aDescription, Color aColor, ImageView aLandmark) {
+	public Landmark(String aDescription, Color aColor) {
 		setDescription(aDescription);
 		setColor(aColor);
-		setLandmark(aLandmark);
 	}
 	
 	public void setDescription(String aDescription) {
@@ -29,17 +26,6 @@ public class Landmark {
 	
 	public Color getColor() {
 		return color;
-	}
-	
-	public void setLandmark(ImageView aLandmark) {
-		landmark = aLandmark;
-		landmark.setPreserveRatio(false);
-		landmark.setFitWidth(300);
-		landmark.setFitHeight(300);
-	}
-	
-	public ImageView getLandmark() {
-		return landmark;
 	}
 	
 	public int getPrice() {
