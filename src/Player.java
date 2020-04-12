@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+
 import javafx.scene.image.ImageView;
 
 public class Player {
@@ -8,6 +10,8 @@ public class Player {
 	private ImageView token;
 	private static int currentPlayerIndex = 0;
 	private int inJailNumber = -1;
+	private static int outOfJailCOwnerID = -1;
+	private static int outOfJailCCOwnerID = -1;
 	private boolean justOutOfJail = false;
 	private int position = 0;
 	private int money = 1500;
@@ -66,6 +70,22 @@ public class Player {
 		return inJailNumber;
 	}
 	
+	public void setOutOfJailCOwnerID(int anOwnerID) {
+		outOfJailCOwnerID = anOwnerID;
+	}
+	
+	public int getOutOfJailCOwnerID() {
+		return outOfJailCOwnerID;
+	}
+	
+	public void setOutOfJailCCOwnerID(int anOwnerID) {
+		outOfJailCCOwnerID = anOwnerID;
+	}
+	
+	public int getOutOfJailCCOwnerID() {
+		return outOfJailCCOwnerID;
+	}
+	
 	public void setJustOutOfJail(boolean whetherJustOutOfJail) {
 		justOutOfJail = whetherJustOutOfJail;
 	}
@@ -75,15 +95,22 @@ public class Player {
 	}
 	
 	public void setPosition(int aPosition) {
+		if(aPosition < getPosition() && getInJailNumber() == -1) {
+			addMoney(200);
+		}
 		position = aPosition;
 	}
 	
 	public void moveForward(int steps) {
-		position = (position + steps) % 40;
+		if(getPosition() + steps >= 40) {
+			addMoney(200);
+		}
+		position = (getPosition() + steps) % 40;
+		
 	}
 	
 	public void moveBackward(int steps) {
-		position = (position - steps) % 40;
+		position = getPosition() - steps;
 	}
 	
 	public int getPosition() {
@@ -104,24 +131,15 @@ public class Player {
 	
 	public void addPropertyID(int aPropertyID) {
 		propertyIDs.add(aPropertyID);
+		Collections.sort(propertyIDs);
 	}
 	
 	public void removePropertyID(int aPropertyID) {
-		propertyIDs.remove(aPropertyID);
+		propertyIDs.remove(propertyIDs.indexOf(aPropertyID));
 	}
 	
 	public ArrayList<Integer> getPropertyIDs() {
 		ArrayList<Integer> tempPropertyIDs = new ArrayList<>(propertyIDs);
 		return tempPropertyIDs;
-	}
-
-	//returns an arraylist of properties
-	public ArrayList<Integer> getProperties() {
-		return properties;
-	}
-	
-	//sets arraylist of properties
-	public void setProperties(ArrayList<Integer> properties) {
-		this.properties = properties;
 	}
 }
