@@ -9,12 +9,14 @@ public class Dice {
 	private int number;
 	private ImageView faceIcon;
 	private static int doubleNumber;
+	private static boolean toBeExtraRolled;
 	
 	//constructor
 	public Dice() {
 		setNumber();
 		setFaceIcon();
 		setDoubleNumber();
+		setToBeExtraRolled(false);
 	}
 	
 	//setter and getter for dice roll
@@ -28,7 +30,7 @@ public class Dice {
 	
 	//sets front view image of the dice
 	public void setFaceIcon() {
-		faceIcon = new ImageView(new Image("Dice/" + number + ".jpg"));
+		faceIcon = new ImageView(new Image("Dice/" + getNumber() + ".jpg"));
 		faceIcon.setPreserveRatio(false);
 		faceIcon.setFitWidth(100);
 		faceIcon.setFitHeight(100);
@@ -52,5 +54,13 @@ public class Dice {
 	//returns number of doubled a player rolls
 	public int getDoubleNumber() {
 		return doubleNumber;
+	}
+	
+	public void setToBeExtraRolled(boolean whetherToBeExtraRolled) {
+		toBeExtraRolled = whetherToBeExtraRolled;
+	}
+	
+	public boolean getToBeExtraRolled() {
+		return toBeExtraRolled;
 	}
 }

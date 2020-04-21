@@ -1,20 +1,16 @@
 import javafx.scene.paint.Color;
-import javafx.scene.image.ImageView;
 
 public class Landmark {
 	
 	//instance variables
 	private String description;
 	private Color color;
-	private ImageView landmark;
 	private int ownerID = -1;
 	private int groupOwnerID = -1;
 	
-	//constructor (takes a description, color and landmark)
-	public Landmark(String aDescription, Color aColor, ImageView aLandmark) {
+	public Landmark(String aDescription, Color aColor) {
 		setDescription(aDescription);
 		setColor(aColor);
-		setLandmark(aLandmark);
 	}
 	
 	//setter for description
@@ -37,20 +33,6 @@ public class Landmark {
 		return color;
 	}
 	
-	//sets the image of the landmark on the board with heightxwidth to fit a square icon
-	public void setLandmark(ImageView aLandmark) {
-		landmark = aLandmark;
-		landmark.setPreserveRatio(false);
-		landmark.setFitWidth(300);
-		landmark.setFitHeight(300);
-	}
-	
-	//gets the image of the landmark
-	public ImageView getLandmark() {
-		return landmark;
-	}
-	
-	//getter for price
 	public int getPrice() {
 		return -1;
 	}

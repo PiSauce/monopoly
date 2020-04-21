@@ -1,5 +1,4 @@
 import javafx.scene.paint.Color;
-import javafx.scene.image.ImageView;
 
 public class Utility extends Landmark {
 	
@@ -9,8 +8,8 @@ public class Utility extends Landmark {
 	private static int groupOwnerID = -1;
 	private final int[] groupLocations = {12, 28};
 	
-	public Utility(String aDescription, Color aColor, ImageView aLandmark) {
-		super(aDescription, aColor, aLandmark);
+	public Utility(String aDescription, Color aColor) {
+		super(aDescription, aColor);
 	}
 	
 	public int getPrice() {
